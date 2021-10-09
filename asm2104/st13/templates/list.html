@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+</head>
+<body>
+    {% for student in students %}
+        {{ student.surname }} {{ student.name }}. Средний балл: {{ student.averageRating }}.
+        {% if student.additionalScholarship %}
+            Дополнительная стипендия: {{ student.additionalScholarship }}.
+        {% endif %}
+    {% endfor %}
+</body>
+</html>

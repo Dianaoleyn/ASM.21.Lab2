@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ChangeStrategy</title>
+</head>
+<body>
+    <form action="/changeStrategy" method="post">
+        <label>
+            <select name="class">
+                {% for class in classes %}
+                <option value="{{ class.text }}">{{ class.text }}</option>
+                {% endfor %}
+            </select>
+        </label>
+    <input type=submit value="Ok">
+    </form>
+</body>
+</html>
