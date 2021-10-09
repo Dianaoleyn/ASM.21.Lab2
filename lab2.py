@@ -2,6 +2,7 @@
 import threading
 import time
 import aam2107.st03.main
+import asm2105.st04.app
 
 
 MENU = [
@@ -13,6 +14,7 @@ MENU = [
     #		["[<код группы>-<номер по журналу>] <Фамилия>", "<путь до модуля>"],
 
     # ["[2107-03] Gladkov", aam2107.st03.main.main()],
+    ["[2105-04] Dautov", "asm2105/st04/app.py"]
 ]
 
 
