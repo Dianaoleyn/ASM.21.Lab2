@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+{% for employee in employees %}
+    <div class="list-card">
+        ФИО: {{ employee.name }}, З/П: {{ employee.averageRating }}, Ставка: {{ employee.stake }}
+        {% if employee.level %}
+            Уровень: {{ employee.level }}.
+        {% endif %}
+    </div>
+{% endfor %}
+</body>
+</html>
