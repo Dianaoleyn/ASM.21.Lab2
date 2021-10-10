@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab2_Zhilina</title>
+</head>
+<body>
+    <link type="text/css" rel="stylesheet" href="/static/design.css"/>
+    <form action = '/add' method=POST>
+        <input type=hidden name=id value={{id}}>
+        <input type=text name=name placeholder='Name' value={{name}}><br>
+        <input type=text name=surname placeholder='Surname' value={{surname}}><br>
+        <input type=text name=age placeholder='Age' value={{age}}><br>
+        <input type=text name=salary placeholder='Salary' value={{salary}}><br>
+        <input type="checkbox" name="capstud" placeholder='Name' /><br>
+        <input type=text name=coe placeholder='Employee count' value={{CountOfEmployees}}><br>
+        <br><input type=submit value="Ok">
+    </form>
+</body>
+</html>
