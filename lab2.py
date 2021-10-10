@@ -7,6 +7,7 @@ import aam2107.st04.main
 import asm2105.st20.main
 import asm2105.st14.run
 import asm2105.st14.main
+import asm2104.st17.main
 
 
 MENU = [
