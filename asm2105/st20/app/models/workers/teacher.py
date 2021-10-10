@@ -1,4 +1,4 @@
-from ..workers.worker import worker, ConsoleSetterStrategy, ConsolePrintStrategy
+from asm2105.st20.app.models.workers.worker import worker, ConsoleSetterStrategy, ConsolePrintStrategy
 
 class teacher(worker):
     _subject = str()

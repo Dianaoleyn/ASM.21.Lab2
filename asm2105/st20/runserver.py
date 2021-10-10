@@ -1,5 +1,4 @@
-from .app import app
-from .app import routes
+from asm2105.st20.app import app, routes
 
 if __name__ == '__main__':
     if app.debug:

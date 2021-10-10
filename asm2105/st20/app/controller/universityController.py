@@ -1,11 +1,11 @@
-from ..controller.Controller import Controller
-from ...app import get_university
-from ...app.models.students.student import student
-from ...app.models.students.headman import headman
-from ...app.models.workers.worker import worker
-from ...app.models.workers.teacher import teacher
-from ...app.strategys.printStrategys import WebPrintStrategy
-from ...app.strategys.setterStrategy import WebSetterStrategy
+from asm2105.st20.app.controller.Controller import Controller
+from asm2105.st20.app import get_university
+from asm2105.st20.app.models.students.student import student
+from asm2105.st20.app.models.students.headman import headman
+from asm2105.st20.app.models.workers.worker import worker
+from asm2105.st20.app.models.workers.teacher import teacher
+from asm2105.st20.app.strategys.printStrategys import WebPrintStrategy
+from asm2105.st20.app.strategys.setterStrategy import WebSetterStrategy
 
 import json
 

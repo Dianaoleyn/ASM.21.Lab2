@@ -1,5 +1,5 @@
-from ...app.strategys.printStrategys import ConsolePrintStrategy
-from ...app.strategys.setterStrategy import ConsoleSetterStrategy
+from asm2105.st20.app.strategys.printStrategys import ConsolePrintStrategy
+from asm2105.st20.app.strategys.setterStrategy import ConsoleSetterStrategy
 
 class cardItem:
     _id = -1

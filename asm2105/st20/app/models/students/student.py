@@ -1,4 +1,4 @@
-from ..cardItem import cardItem, ConsolePrintStrategy, ConsoleSetterStrategy
+from asm2105.st20.app.models.cardItem import cardItem, ConsolePrintStrategy, ConsoleSetterStrategy
 
 class student(cardItem):
     _group = str()
