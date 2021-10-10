@@ -1,0 +1,142 @@
+{% extends 'layout/app_layout.html' %}
+
+{% block title %}
+Университет
+{% endblock %}
+
+{% block content %}
+<div id="university_header">
+    <h1>Университет: {{ context.university_name }}</h1>
+</div>
+<div class="main_btns_group">
+    <div class="btn-group">
+        <button id="showCardItemsBtn">Посмотреть все CardItem</button>
+        <button id="showStudentsBtn">Посмотреть только студентов</button>
+        <button id="showWorkersBtn">Посмотреть только служащих</button>
+    </div>
+    <div class="btn-group">
+        <button id="search-by-name-Btn">Поиск по имени</button>
+        <button id="search-by-id-Btn">Поиск по номеру</button>
+        <button id="addCardItemsBtn">Добавить CardItem</button>
+    </div>
+    <div class="btn-group">
+        <button>Удалить все</button>
+    </div>
+</div>
+
+
+
+<!--Контенты для запросов-->
+<!--Нет записей-->
+{% include 'views/include/modalWindow_contents/noUsers.html' %}
+
+<!--Все записи-->
+{% include 'views/include/modalWindow_contents/allCardItems.html' %}
+
+<!--Поиск-->
+{% include 'views/include/modalWindow_contents/search.html' %}
+
+<!--Форма для cardItem-->
+{% include 'views/include/modalWindow_contents/cardItemForm.html' %}
+
+
+<script>
+    var modal=null;
+    $(document).ready(function (){
+        function show_one_content(show_id=null){
+            $('.by-click').hide()
+            if (show_id!=null){
+                $(`#${show_id}`).show();
+            }
+
+        }
+
+        show_one_content();
+
+        $.ajaxSetup({
+            headers:{
+                'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        modal=new ModalWindow('', document.getElementById('CardItemForm'), AnimationsTypes.slideIn, true, true)
+        modal.set_on_Close(show_one_content);
+
+        //Добавить новый cardItem
+        $('#addCardItemsBtn').click(function (){
+            modal.change_header_text('Добавить новую запись');
+            modal.change_content(document.getElementById('CardItemForm'));
+            show_one_content('CardItemForm');
+            document.getElementById('addNewCardItemFormBtn').disabled=true;
+            modal.show();
+        })
+
+         //Берем атрибуты объекта и вставляем их в форму
+         $('#type_select').change(function (){
+             $.ajax({
+                    url: '/getattribs',
+                    method: 'GET',
+                    data:{
+                        'type':$(this).val()
+                    },
+                    success: (data)=> {
+                        $( ".form-group[objAttr='true']").remove()
+
+                        document.getElementById('addNewCardItemFormBtn').disabled=false;
+                        // console.log(data);
+
+                        var arr=JSON.parse(data)
+
+                        for(key of Object.keys(arr).reverse()){
+                            var group_div=document.createElement('div');
+                            group_div.setAttribute('objAttr', 'true');
+                            group_div.className='form-group'
+                            group_div.innerHTML=`<label for="${key}">${arr[key][0]}</label>`
+                            if (arr[key][1]=='int'){
+                                group_div.innerHTML+=`<input id="${key}" type="number" name="${key}" required min="0">`
+                            }
+                            else if (arr[key][1]=='str'){
+                                if(key=='phone'){
+                                    group_div.innerHTML+=`<input id="${key}" type="tel" name="${key}" pattern="7[0-9]{10}" placeholder="7XXXXXXXXXX" required >`
+                                }
+                                else{
+                                    group_div.innerHTML+=`<input id="${key}" type="text" name="${key}" required >`
+                                }
+                            }
+                            $(this.parentNode).after(group_div)
+                        }
+                    }
+             })
+         })
+
+    })
+
+    //Отправить cardItem
+    function sendCardItem(form){
+        var data={
+            'type':form.type_select.value
+        }
+
+        var inputs=form.querySelectorAll('input');
+        for (input of inputs){
+            data[input.id]=input.value;
+        }
+        $.ajax({
+            url: '/action',
+            method: 'POST',
+            data: data,
+            success: function (responce){
+                if (responce=='true'){
+                    modal.close()
+                }
+            }
+        })
+        return false;
+    }
+</script>
+
+{% endblock %}
+
+
+
+

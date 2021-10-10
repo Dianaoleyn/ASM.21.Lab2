@@ -4,6 +4,7 @@ import time
 import aam2107.st03.main
 import asm2105.st04.app
 import aam2107.st04.main
+import asm2105.st20.main
 
 
 MENU = [
@@ -16,6 +17,7 @@ MENU = [
 
     # ["[2107-03] Gladkov", aam2107.st03.main.main()],
     ["[2105-04] Dautov", "asm2105/st04/app.py"],
+    ["[2105-20] Kharisov", "asm2105.st20/runserver.py"]
     # ["[2107-04] Zhilina", aam2107.st04.main.main()],
 ]
 

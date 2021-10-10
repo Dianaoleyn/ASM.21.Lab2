@@ -1,0 +1,30 @@
+#main_content {
+    height: calc(100% - 95px);
+    padding: 75px 20px 20px 20px;
+}
+
+.justify-content-center {
+    justify-content: center !important;
+}
+
+.invalid-feedback {
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+    color: #dc3545;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #e4e4e4;
+    border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    border-radius: 100px;
+}
