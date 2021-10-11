@@ -1,0 +1,263 @@
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    height: 100%;
+}
+
+body{width:100%;overflow-x:hidden;background:#f2f2f2;padding:0;margin:0;height: 100%}
+
+
+/* Шапка */
+.header{width:100%;top:0;height:35px;background:#0079c2;color:#fff;padding:10px 10px 10px 10px;position: fixed;z-index: 999;}
+
+.header_container {
+    margin-right: auto;
+    margin-left: auto;
+    width: 80%;
+}
+.header_container:after {
+    clear: both;
+}
+.header_container:before, .header_container:after {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+
+.header .header_menu{
+    float:left;
+    list-style: none; /*убираем маркеры списка*/
+    margin: 0; /*убираем отступы*/
+    padding-left: 0; /*убираем отступы*/
+    margin-top:10px; /*делаем отступ сверху*/
+    height: 35px; /*задаем высоту*/
+}
+
+.header .header_menu > li {
+    float:left; /*Размещаем список горизонтально для реализации меню*/
+}
+
+.header .header_menu a{
+    text-decoration: none; /*убираем подчеркивание текста ссылок*/
+    color:#fff; /*меняем цвет ссылок*/
+    padding:0px 15px; /*добавляем отступ*/
+    display: block;
+    -moz-transition: all 0.3s 0.01s ease; /*делаем плавный переход*/
+    -o-transition: all 0.3s 0.01s ease;
+    -webkit-transition: all 0.3s 0.01s ease;
+}
+
+.header .header_menu a:hover{
+    color: lightgray;
+}
+.header .header_logo{
+    text-align:center;
+    width:45px;
+    float: left;
+    margin-top: -5px}
+
+
+/*Страница логина*/
+.login-container {
+    min-height: calc(100% - 55px);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;;
+}
+.login {
+    width: 390px;
+    background: #f2f2f2;
+    border-radius: 3px;
+    position: relative;
+}
+.login-form {
+    width: 100%;
+}
+.login-form-title {
+    font-size: 30px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: center;
+
+    width: 100%;
+    display: block;
+}
+
+.big-blue-button-block{
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+}
+.big-blue-button{
+    outline: none !important;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.2;
+    text-transform: uppercase;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    height: 62px;
+    background-color: #0079c2;
+    border-radius: 3px;
+
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+
+}
+.big-blue-button:hover{
+    cursor: pointer;
+    background-color: #4391f1;
+}
+
+
+
+/*Меню кнопок*/
+.main_btns_group {
+    text-align: center;
+}
+.btn-group button {
+    background-color: #4391f1;
+    border: 1px solid dodgerblue; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 30%;
+    height: 20vh;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #0079c2;
+}
+
+/*ФОРМЫ И МОДАЛЬНЫЕ ОКНА*/
+#addNewCardItemForm{
+    width: 100%;
+    border-radius: 4px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.form-group {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 0 20px;
+}
+.form-group:last-child {
+    margin: 0;
+}
+.form-group label {
+    display: block;
+    margin: 0 0 10px;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+.form-group input {
+    outline: none;
+    display: block;
+    background: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 12px 20px;
+    color: rgba(0, 0, 0, 0.6);
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 500;
+    line-height: inherit;
+    transition: 0.3s ease;
+}
+
+.form-group input:focus {
+    color: rgba(0, 0, 0, 0.8);
+}
+.form-group button {
+    outline: none;
+    background: #4285f4;
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    padding: 12px 20px;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 500;
+    line-height: inherit;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+button:disabled{
+    background: #575756;
+}
+
+.resize{
+    display: inline-block;
+    width: calc(50% - 10px);
+}
+
+select{
+    outline: none;
+    display: block;
+    background: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 12px 20px;
+    color: rgba(0, 0, 0, 0.6);
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 500;
+    line-height: inherit;
+    transition: 0.3s ease;
+}
