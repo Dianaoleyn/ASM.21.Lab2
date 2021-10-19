@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+
+{% block title %}
+Add member
+{% endblock %}
+
+
+{% block section %}
+    <div class="add_member" >
+        <h1>Add member</h1>
+        <form action="/add_member" method="post">
+            <input type="text" name="name" placeholder="Input name"><br>
+            <input type="text" name="surname" placeholder="Input surname"><br>
+            <input type="text" name="age" placeholder="Input Age"><br>
+            <input type="text" name="position" placeholder="Input position, if it's Player"><br>
+            <input type="text" name="role" placeholder="Input role, if it's Manager"><br>
+            <input type="text" name="function" placeholder="Input function, if it's Staff"><br>
+            <input type=submit value="Save">
+        </form>
+    </div>
+{% endblock section %}

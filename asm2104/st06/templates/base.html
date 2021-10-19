@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/main.css') }}">
+    <title>{% block title %}  {% endblock %}</title>
+
+</head>
+
+<body class="body">
+    <header id="toppage">
+        <h1 class="site-header1"><a href="/">MY TEAM</a></h1>
+    </header>
+    <main>
+        <section class="col-side">
+            <h1 class="aside-name"> Menu</h1>
+            <nav>
+            <ol>
+                <li><a href="/add_member">Add member</a></li>
+                <li><a href="/change_strategy">Change strategy</a></li>
+                <li><a href="/load">Load</a></li>
+                <li><a href="/dump">Dump</a></li>
+                <li><a href="/delete_members">Delete members</a></li>
+            </ol>
+            </nav>
+        </section>
+        <section class="col-main">
+            {% block section %}
+
+            {% endblock section %}
+        </section>
+    </main>
+
+</body>
+
+</html>
+
+<!--                <li><a href="/edit_member">Edit member</a></li>-->
+<!--                <li><a href="/change_storage_strategy">Change storage</a></li>-->

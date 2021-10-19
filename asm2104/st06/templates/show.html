@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+
+{% block title %}
+All members
+{% endblock %}
+
+
+{% block section %}
+    <div class="All members" >
+                {% for member in members %}
+                <br>Name: {{ member.name }}<br>
+                Surname: {{ member.surname }}<br>
+                Age: {{ member.age }}<br>
+                    {% if member.position %}
+                        Position: {{ member.position }}<br>
+                    {% endif %}
+                    {% if member.role %}
+                        Role: {{ member.role }}<br>
+                    {% endif %}
+                    {% if member.function %}
+                        Position: {{ member.function }}<br><br>
+                    {% endif %}
+                {% endfor %}
+    </div>
+{% endblock section %}

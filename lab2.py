@@ -18,6 +18,7 @@ MENU = [
     ["[2104-08] Korotkova", "asm2104/st08/main.py"],
     ["[2105-02] Astafeva", "asm2105/st02/run.py"],
     ["[2104-15] Polyakova", "asm2104/st15/main.py"],
+    ["[2104-06] Kim", "asm2104/st06/main.py"],
     ["[2105-03] Bogdanova", "asm2105/st03/run.py"],
     ["[2105-18] Tukhvatullina", "asm2105/st18/main.py"],
     ["[2104-17] Svirkov", "asm2104/st17/main.py"],
