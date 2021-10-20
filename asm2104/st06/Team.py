@@ -1,8 +1,8 @@
 from flask import render_template
 
-from asm2104.st06 import StorageIO
-from asm2104.st06.ConsoleIO import ConsoleIO
-from asm2104.st06.Html import Html
+import StorageIO
+from ConsoleIO import ConsoleIO
+from Html import Html
 
 
 class Team:

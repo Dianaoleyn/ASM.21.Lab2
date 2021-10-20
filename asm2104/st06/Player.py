@@ -1,4 +1,4 @@
-from asm2104.st06.Member import Member
+from Member import Member
 
 
 class Player(Member):

@@ -1,8 +1,8 @@
 from flask import render_template, request
 
-from asm2104.st06.Manager import Manager
-from asm2104.st06.Player import Player
-from asm2104.st06.Staff import Staff
+from Manager import Manager
+from Player import Player
+from Staff import Staff
 
 
 class Html:

@@ -1,9 +1,9 @@
 from flask import Flask, request, render_template, g
 
-from asm2104.st06 import StorageIO
-from asm2104.st06.ConsoleIO import ConsoleIO
-from asm2104.st06.Html import Html
-from asm2104.st06.StorageIO import Pickle, Shelve
+from StorageIO import StorageIO
+from ConsoleIO import ConsoleIO
+from Html import Html
+from StorageIO import Pickle, Shelve
 
 if __name__ == '__main__':
     from Team import Team
@@ -107,4 +107,4 @@ def delete_members():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(app.run(debug=True))
