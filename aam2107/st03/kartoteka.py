@@ -1,6 +1,6 @@
-from .FileIO import FileOutputPickle
-from .Stusent import Student as St
-from .Captain import Captain as Cap
+from FileIO import FileOutputPickle
+from Stusent import Student as St
+from Captain import Captain as Cap
 from flask import request, render_template
 
 
