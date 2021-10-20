@@ -1,4 +1,4 @@
-from .ConsoleIO import WebIO
+from ConsoleIO import WebIO
 from flask import render_template
 
 
