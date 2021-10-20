@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, g
 
-from StorageIO import StorageIO
+import StorageIO
 from ConsoleIO import ConsoleIO
 from Html import Html
 from StorageIO import Pickle, Shelve
