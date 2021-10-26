@@ -7,8 +7,8 @@ from file import File
 
 
 class HtmlController:
-    def getMenu(self, item):
-        return render_template("menu.html")
+    def getMenu(self, item, employees):
+        return render_template("menu.html", employees=employees)
 
     def getEmployees(self):
         return self.load()
@@ -17,7 +17,6 @@ class HtmlController:
         classes = [
             {'text': 'Файл', 'class': File},
             {'text': 'Консоль', 'class': Console},
-            {'text': 'HTML', 'class': HtmlController}
         ]
 
         return render_template('changeStrategy.html', classes=classes)
@@ -31,4 +30,4 @@ class HtmlController:
                                request.form.get('level'))
         else:
             st = Salesman(request.form.get('name'), request.form.get('salary'), request.form.get('stake'))
-        return st
+        return [st]

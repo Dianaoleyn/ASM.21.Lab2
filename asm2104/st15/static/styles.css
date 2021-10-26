@@ -1,7 +1,7 @@
 .links {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /*justify-content: center;*/
     align-items: center;
 }
 
@@ -10,9 +10,9 @@
     min-width: 200px;
     margin: 10px;
     padding: 10px;
-    border: solid 1px #8ec5c5;
+    border: solid 1px #c5a2b2;
     border-radius: 10px;
-    background-color: #8ec5c5;
+    background-color: #c5a2b2;
     cursor: pointer;
     display: flex;
     justify-content: center;

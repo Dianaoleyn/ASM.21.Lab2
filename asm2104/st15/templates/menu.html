@@ -6,12 +6,24 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-<div class='links'>
-    <div class='link'> <a href="/add">Добавить элемент</a> </div>
-    <div class='link'> <a href="/clear">Очистить список</a> </div>
-    <div class='link'> <a href="/list">Вывод в источник</a> </div>
-    <div class='link'> <a href="/load">Получить (файл/консоль)</a> </div>
-    <div class='link'> <a href="/changeStrategy">Изменить источник</a> </div>
+<div style="display: flex">
+    <div class='links'>
+        <div class='link'><a href="/add">Добавить элемент</a></div>
+        <div class='link'><a href="/clear">Очистить список</a></div>
+<!--        <div class='link'><a href="/list">Вывод в файл/консоль</a></div>-->
+        <div class='link'><a href="/load">Получить (файл/консоль)</a></div>
+        <div class='link'><a href="/changeStrategy">Изменить форму ввода</a></div>
+    </div>
+    <div class='links'>
+        {% for employee in employees %}
+        <div class="list-card">
+            ФИО: {{ employee.name }}, З/П: {{ employee.averageRating }}, Ставка: {{ employee.stake }}
+            {% if employee.level %}
+            Уровень: {{ employee.level }}.
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
 </div>
 </body>
 </html>

@@ -1,14 +1,15 @@
 ﻿from HtmlController import HtmlController
-from Console import Console
+from file import File
 
 
 class Shop:
     employeeList = []
-    strategy = Console()
+    strategy = File()
     view = HtmlController()
 
     def addEmployee(self):
-        self.employeeList.append(self.view.getEmployees())
+        self.employeeList.extend(self.view.getEmployees())
+        self.strategy.showEmployees(self.employeeList)
 
     def clearEmployees(self):
         self.employeeList.clear()
@@ -20,7 +21,7 @@ class Shop:
         return self.view.changeStrategy()
 
     def getEmployees(self):
-        self.employeeList = self.strategy.getEmployees()
+        self.employeeList.extend(self.strategy.getEmployees())
 
     def getMenu(self):
-        return self.view.getMenu(self)
+        return self.view.getMenu(self, self.employeeList)

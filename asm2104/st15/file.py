@@ -8,4 +8,5 @@ class File:
 
     def showEmployees(self, employees):
         with open('asm2104/st15/dump.pickle', 'wb') as f:
+            print(employees)
             pickle.dump(employees, f)
