@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <form class='add-fields' action="/add" method="post">
+        <div class='add-field'> ФИО: <input type="text" name="name"> </div>
+        <div class='add-field'> Зарплата: <input type="text" name="salary"> </div>
+        <div class='add-field'> Ставка: <input type="number" min="0" name="stake"> </div>
+        <div class='add-field'> Грейд(Если админ): <input type="number" min="0" name="level"> </div>
+        <input class='add-button' type=submit value="OK">
+    </form>
+</body>
+</html>
