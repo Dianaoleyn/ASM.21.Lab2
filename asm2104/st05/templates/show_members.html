@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Участники группы</title>
+</head>
+<body>
+    <h1>Группа</h1>
+    {% for member in data %}
+      {% if member.is_main %}
+        <h4>Староста</h4>
+         <p>Имя {{ member.first_name }}, Фамилия {{ member.last_name }}</p>
+        <p>Возраст: {{ member.age }}</p>
+        <p>Стипендия: {{ member.scholarship }}</p>
+
+      {% else %}
+        <h4>Студент</h4>
+        <p>Имя {{ member.first_name }}, Фамилия {{ member.last_name }}</p>
+        <p>Возраст: {{ member.age }}</p>
+      {% endif %}
+    {% endfor %}
+<a href="/">На главную</a><br>
+</body>
+</html>
