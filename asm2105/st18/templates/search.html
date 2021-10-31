@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Главная
+{% endblock %}
+
+{% block content %}
+<h1>Поиск</h1>
+    <input type="number" id="search_number">
+    <br>
+    <input type="button" id="search_btn" value="Поиск"/>
+    <div id="result"></div>
+
+    <script>
+        $('#search_btn').click(function () {
+            $.ajax({
+                url:'/get_by_num',
+                type:'GET',
+                data:{'id':$('#search_number').val()},
+                success:(data)=>{
+                    if (data==='false'){
+                        alert('Не удалось найти такой номер')
+                    }
+                    else{
+                        $('#result').html(data)
+                    }
+                }
+            })
+        })
+    </script>
+
+{% endblock %}

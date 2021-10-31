@@ -1,14 +1,15 @@
-from flask import Flask
-app = Flask(__name__)
+
+
 
 if __name__ == '__main__':
     from group import group
+    from app import app
+    import routes
 else:
+    from .app import app
     from .group import group
+    import routes
 
-@app.route("/")
-def main():
-    return group().f()
 
 
 if __name__ == "__main__":

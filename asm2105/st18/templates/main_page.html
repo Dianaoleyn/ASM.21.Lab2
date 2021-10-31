@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Главная
+{% endblock %}
+
+{% block content %}
+<h1>Выберите действие</h1>
+    <br>
+    <input type="button" onclick="window.location.href='/show_all'" value="Посмотреть всех"/>
+    <br>
+    <input type="button" onclick="window.location.href='/show_students'" value="Посмотреть студентов"/>
+    <br>
+    <input type="button" onclick="window.location.href='/show_employes'" value="Посмотреть служащих"/>
+    <br>
+    <input type="button" onclick="window.location.href='/add'" value="Добавить"/>
+    <br>
+    <input type="button" onclick="window.location.href='/by_num'" value="Поиск по номеру"/>
+    <br>
+    <input type="button" id="clear_btn" value="Очистка"/>
+
+    <script>
+        $('#clear_btn').click(function (){
+            $.ajax({
+                url:'/clear',
+                type:'GET',
+                success:(msg)=>{
+                    alert(msg)
+                }
+            })
+        })
+    </script>
+
+{% endblock %}
