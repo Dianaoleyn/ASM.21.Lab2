@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Главная
+{% endblock %}
+
+{% block content %}
+<h1>Выберите действие</h1>
+    <br>
+    <input type="button" onclick="window.location.href='/show'" value="Вывести список"/>
+    <br>
+    <input type="button" onclick="window.location.href='/add'" value="Добавить"/>
+    <br>
+    <input type="button" onclick="window.location.href='/clear'" value="Очистить"/>
+    <br>
+    <input type="button" onclick="window.location.href='/search'" value="Поиск"/>
+
+{% endblock %}

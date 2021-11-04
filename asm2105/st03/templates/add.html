@@ -1,0 +1,97 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Добавить
+{% endblock %}
+
+{% block content %}
+    <h1>Тип объекта:</h1>
+    <div id="choice_type">
+        <input type="radio" name="choice_type" class="type_radio" value="student">
+        <label for="student">Студент</label>
+
+        <input type="radio" name="choice_type" class="type_radio"  value="worker">
+        <label for="student">Служащий</label>
+
+        <input type="radio" name="choice_type" class="type_radio"  value="starosta">
+        <label for="student">Староста</label>
+
+        <input type="radio" name="choice_type" class="type_radio"  value="zavkaf">
+        <label for="student">Зав. кафедрой</label>
+    </div>
+
+    <div id="type-attribs">
+    </div>
+    <input type="button" value="Добавить" id="add_btn" hidden>
+
+    <script>
+        var radio_buttons=document.getElementsByClassName('type_radio');
+
+        var add_btn=document.getElementById('add_btn');
+
+        add_btn.addEventListener('click', function (){
+            let addRequest = new XMLHttpRequest();
+
+            var attr={}
+
+            addRequest.open('POST', '/addmember');
+            addRequest.setRequestHeader('Content-Type', 'application/json');
+
+            var attr_els=document.querySelectorAll('input[data-attribute]')
+            for (var i of attr_els){
+                console.log(i);
+                attr[i.getAttribute('data-attribute')]=i.value;
+            }
+
+
+            let json = JSON.stringify({
+                  type: document.querySelector('input[name="choice_type"]:checked').value,
+                  attr: attr
+                });
+
+            addRequest.send(json)
+
+            // Ждём завершения: неважно, успешного или нет
+            addRequest.onloadend = function() {
+                if (addRequest.status == 200) {
+                    alert("Успех");
+                } else {
+                    alert("Ошибка " + this.status);
+                }
+            };
+
+        })
+
+        for (var radio of radio_buttons){
+            radio.addEventListener('click', function (event){
+                let xhr = new XMLHttpRequest();
+
+                let url = new URL('http://localhost:5000/gettypeattr');
+                url.searchParams.set('type', event.target.getAttribute('value'));
+
+                xhr.open('GET', url);
+                
+                xhr.onload=function (){
+                    if (xhr.status !== 200) { // анализируем HTTP-статус ответа, если статус не 200, то произошла ошибка
+                        alert(`Ошибка ${xhr.status}: ${xhr.statusText}`); // Например, 404: Not Found
+                    } else {
+                        var attribs = JSON.parse(xhr.responseText);
+                        var div=document.getElementById('type-attribs');
+                        div.innerHTML=''
+                        for (var attr of attribs){
+                            div.innerHTML+=`<input type="text" id="${attr}_input" data-attribute="${attr}">`+
+                                `<label for="${attr}_input">${attr}</label><br>`
+                        }
+
+                        add_btn.hidden=false;
+                    }
+                }
+
+                xhr.send()
+            })
+        }
+
+
+
+    </script>
+{% endblock %}

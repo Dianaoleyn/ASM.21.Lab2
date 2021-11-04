@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Главная
+{% endblock %}
+
+{% block content %}
+<h1>Кого показать?</h1>
+    <br>
+    <input type="button" onclick="window.location.href='/showstudents'" value="Студентов"/>
+    <br>
+    <input type="button" onclick="window.location.href='/showworkers'" value="Служащих"/>
+    <br>
+    <input type="button" onclick="window.location.href='/showall'" value="Всех"/>
+
+{% endblock %}

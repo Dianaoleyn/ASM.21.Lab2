@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Главная
+{% endblock %}
+
+{% block content %}
+<h1>Поиск</h1>
+    <input type="number" id="number-input">
+    <br>
+    <input type="button" id="search-btn" value="Найти"/>
+    <div id="result"></div>
+
+    <script>
+        var search_btn=document.getElementById('search-btn');
+        search_btn.addEventListener('click', function (){
+            let request = new XMLHttpRequest();
+
+            var id=document.getElementById('number-input');
+
+            let url = new URL('http://localhost:5000/searchid');
+            url.searchParams.set('id', id.value);
+
+            console.log(id.value)
+
+            request.open('GET', url);
+
+            request.onload=function (){
+                    if (request.status !== 200) { // анализируем HTTP-статус ответа, если статус не 200, то произошла ошибка
+                        alert(`Ошибка ${request.status}: ${request.statusText}`); // Например, 404: Not Found
+                    } else {
+                        if (request.responseText==='0'){
+                            alert('No members')
+                        }
+                        else{
+                            var result_div=document.getElementById('result');
+                            result_div.innerHTML=request.responseText;
+                        }
+                    }
+                }
+
+            request.send()
+
+        })
+    </script>
+
+
+{% endblock %}
