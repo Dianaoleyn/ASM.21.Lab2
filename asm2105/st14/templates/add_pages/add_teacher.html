@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Добавить
+{% endblock %}
+
+{% block content %}
+    <h1>Заполните все поля!</h1>
+    <form action="/append_teacher" method="post">
+        <label for="name">Имя:</label>
+        <br>
+        <input name="name" id="name">
+        <br><br>
+        <label for="age">Возраст:</label>
+        <br>
+        <input name="age" id="age">
+        <br><br>
+        <label for="salary">Зарплата:</label>
+        <br>
+        <input name="salary" id="salary" type="number">
+        <br><br>
+        <label for="subject">Предмет:</label>
+        <br>
+        <input name="subject" id="subject">
+        <br><br>
+        <input type="submit" value="Добавить"/>
+        <br>
+    </form>
+
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Главная
+{% endblock %}
+
+{% block content %}
+<h1>МЕНЮ</h1>
+    <br>
+    <input type="button" onclick="window.location.href='/show'" value="Посмотреть"/>
+    <br>
+    <input type="button" onclick="window.location.href='/add'" value="Добавить"/>
+    <br>
+    <input type="button" onclick="window.location.href='/clear'" value="Очистить"/>
+    <br>
+    <br>
+
+    <form action="/search" method="get">
+        <label for="param">Номер:</label>
+        <input name="param" id="param">
+        <input type="submit" value="Поиск"/>
+        <br>
+    </form>
+
+{% endblock %}

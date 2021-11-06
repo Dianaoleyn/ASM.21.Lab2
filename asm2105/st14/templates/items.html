@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+
+{% block title %}
+{{ context.type }}
+{% endblock %}
+
+{% block content %}
+    <h1>Записи: {{ context.type }}</h1>
+    {{ context.content }}
+{% endblock %}

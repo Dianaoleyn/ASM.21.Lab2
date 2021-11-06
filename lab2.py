@@ -13,7 +13,7 @@ MENU = [
     ["[2107-03] Gladkov", "aam2107/st03/main.py"],
     ["[2105-04] Dautov", "asm2105/st04/app.py"],
     ["[2105-20] Kharisov", "asm2105/st20/runserver.py"],
-    ["[2105-14] Samushkova", "asm2105/st14/run.py"],
+    ["[2105-14] Samushkova", "asm2105/st14/main.py"],
     ["[2104-16] Saichkina", "asm2104/st16/runserv.py"],
     ["[2104-08] Korotkova", "asm2104/st08/main.py"],
     ["[2105-02] Astafeva", "asm2105/st02/run.py"],

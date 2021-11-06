@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Посмотреть
+{% endblock %}
+
+{% block content %}
+<h1>Кого хотите посмотреть?</h1>
+    <input type="button" onclick="window.location.href='/show_students'" value="Ученики">
+    <br>
+    <input type="button" onclick="window.location.href='/show_starostas'" value="Старосты">
+    <br>
+    <input type="button" onclick="window.location.href='/show_workers'" value="Сотрудники">
+    <br>
+    <input type="button" onclick="window.location.href='/show_teachers'" value="Учителя">
+    <br>
+    <input type="button" onclick="window.location.href='/show_directors'" value="Директоры">
+    <br>
+    <input type="button" onclick="window.location.href='/show_all'" value="Все">
+
+{% endblock %}
