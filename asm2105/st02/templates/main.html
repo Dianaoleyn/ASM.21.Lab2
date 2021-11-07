@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Главная
+{% endblock %}
+
+{% block content %}
+<h1>Выберите действие</h1>
+    <br>
+    <label>Посмотреть</label><br>
+    <input type="button" onclick="window.location.href='/showall'" value="Всех"/>
+    <br>
+    <input type="button" onclick="window.location.href='/showstudent'" value="Студенты">
+    <br>
+    <input type="button" onclick="window.location.href='/showstarosta'" value="Только старосты">
+    <br>
+    <input type="button" onclick="window.location.href='/showstaff'" value="Сотрудники">
+    <br>
+    <input type="button" onclick="window.location.href='/showdecan'" value="Деканы">
+    <br>
+    <br>
+
+    <label>Добавить</label><br>
+    <input type="button" onclick="window.location.href='/addstudent'" value="Студент"/>
+    <br>
+    <input type="button" onclick="window.location.href='/addstaff'" value="Сотрудник"/>
+    <br>
+    <input type="button" onclick="window.location.href='/addstarosta'" value="Староста"/>
+    <br>
+    <input type="button" onclick="window.location.href='/adddecan'" value="Декан"/>
+    <br>
+    <br>
+
+    <form action="/search" method="get">
+        <label>Поиск по номеру</label>
+        <br>
+        <input type="number" id="number" name="number"/><br>
+        <input type="submit">
+    </form>
+    <br><br>
+
+
+    <input type="button" onclick="window.location.href='/clear'" value="Очистить"/>
+    <br>
+
+{% endblock %}
