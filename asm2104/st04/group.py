@@ -1,58 +1,66 @@
 import pickle
 
 from fileIO import FileIO
-from consoleIO import ConsoleIO
+from webIO import WebIO
 from student import Student 
 from head import Head 
 
 class Group:
     def __init__(self):
         self.list = []
+        self.strategy=WebIO()
 
-    def addElement(self):
-        self.inputList(ConsoleIO())
+    # def addElement(self):
+    #     self.inputList(ConsoleIO())
         
+    def addElement(self,newElement,newStrategy):
+        self.strategy=newStrategy
+        self.strategy.addOneElement(newElement,self.list)
 
     def clearList(self):
         self.list.clear()
 
-    def deleteObject(self):
-        if(len(self.list)==0):
-            print('Список пуст')
-        else:
-            print('Введите индекс объекта, который нужно удалить')
-            n=int(input())
-            if(len(self.list)<=n):
-                print('В списке нет элемента')
-            else:
-                self.list.pop(n)
+    def deleteObject(self,n):
+        if(len(self.list)!=0):
+            # print('Введите индекс объекта, который нужно удалить')
+            # n=int(input())
+            if(len(self.list)>int(n)):
+                # print('В списке нет элемента')
+                self.list.pop(int(n))
     
-    def editObject(self):
+    # def editObject(self):
+    #     if(len(self.list)==0):
+    #         print('Список пуст')
+    #     else:
+    #         print('Введите индекс объекта, который нужно изменить')
+    #         n=int(input())
+    #         if(len(self.list)<=n):
+    #             print('В списке нет элемента')
+    #         else:
+    #             self.list[n].inputProperties()
+
+    def outputList(self):
+        return self.strategy.output(self.list)
+
+    def inputList(self):
+        return self.strategy.input(self.list)
+
+    def outputWeb(self):
+        self.strategy=WebIO
         if(len(self.list)==0):
-            print('Список пуст')
+            return 'Список пуст'
         else:
-            print('Введите индекс объекта, который нужно изменить')
-            n=int(input())
-            if(len(self.list)<=n):
-                print('В списке нет элемента')
-            else:
-                self.list[n].inputProperties()
+            self.changeStrategy(WebIO())
+            printList=self.outputList()
+            return printList
 
-    def outputList(self,strategy):
-        strategy.output(self.list)
-
-    def inputList(self,strategy):
-        return strategy.input(self.list)
-
-    def outputConsole(self):
-        self.strategy=ConsoleIO
-        if(len(self.list)==0):
-            print('Список пуст')
-        else:
-            self.outputList(ConsoleIO())
+    def changeStrategy(self,newStrategy):
+        self.strategy=newStrategy       
 
     def outputFile(self):
-        self.outputList(FileIO())
+        self.changeStrategy(FileIO())
+        return self.outputList()
 
     def inputFile(self):
-        self.list=self.inputList(FileIO())
+        self.changeStrategy(FileIO())
+        self.list=self.inputList()

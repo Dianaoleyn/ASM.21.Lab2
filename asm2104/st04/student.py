@@ -1,13 +1,13 @@
 class Student:
-    def __init__(self):
-        self.inputProperties()
+    def __init__(self,name,surname,age,mark):
+        self.inputProperties(name,surname,age,mark)
         
 
-    def inputProperties(self):
-        self.name = input('Введите имя\n')
-        self.surname = input('Введите фамилию\n')
-        self.age = input('Введите возраст\n')
-        self.mark = input('Введите оценку\n')
+    def inputProperties(self,name,surname,age,mark):
+        self.name = name
+        self.surname = surname
+        self.age = age
+        self.mark = mark
 
 
     def __str__(self):

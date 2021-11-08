@@ -2,6 +2,12 @@ import pickle
 
 
 class FileIO:
+    def addOneElement(self,newElement,newList):
+        newList.append(newElement)
+        with open('file.pickle', 'wb') as f:
+            pickle.dump(newList, f)
+
+    
     def output(self,newList):
         with open('asm2104/st04/file.pickle', 'wb') as f:
             pickle.dump(newList, f)

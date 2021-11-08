@@ -1,41 +1,76 @@
 from group import Group
-from consoleIO import ConsoleIO
+from student import Student 
+from head import Head
+from webIO import WebIO
+from fileIO import FileIO
 from flask import Flask, request, render_template, url_for, redirect
 
 app = Flask(__name__)
 group=Group()
 
-def main():
-	return render_template("main.html")
+@app.route('/')
+def start():
+    return render_template('main.html')
 
-@app.route("/addElement", methods=['GET'])
+@app.route('/returnMain')
+def returnMain():
+    return render_template('main.html')
+
+@app.route("/addHead",methods=['GET','POST'])
+def addHead():
+    if request.method=='GET':
+        return render_template('addHead.html')
+    else:
+        newElement=Head(request.form['name'],request.form['surname'],request.form['age'],request.form['mark'],request.form['grant'],request.form['number'])
+        if(request.form.__contains__('check')):
+            group.addElement(newElement,FileIO())
+        else:
+            group.addElement(newElement,WebIO())
+        return render_template('addHead.html')
+
+@app.route("/addStudent",methods=['GET','POST'])
+def addStudent():
+    if request.method=='GET':
+        return render_template('addStudent.html')
+    else:
+        newElement=Student(request.form['name'],request.form['surname'],request.form['age'],request.form['mark'])
+        if(request.form.__contains__('check')):
+            group.addElement(newElement,FileIO())
+        else:
+            group.addElement(newElement,WebIO())
+        return render_template('addStudent.html')
+
+@app.route("/clearList")
+def clearList():
+    group.clearList()
+    return render_template('main.html')
+
+@app.route("/addElement")
 def addElement():
     return render_template('addElement.html')
 
-@app.route("/clearList", methods=['POST'])
-def clearList():
-    group.clearList()
-
-@app.route("/outputList", methods=['POST'])
+@app.route("/outputList", methods=['GET'])
 def outputList():
-    group.outputConsole()
+    WebData=group.outputWeb()
+    return render_template('outputList.html', data=WebData)
 
-@app.route("/outputFile", methods=['POST'])
+@app.route("/outputFile")
 def outputFile():
     group.outputFile()
+    return render_template('main.html')
 
-@app.route("/inputFile", methods=['POST'])
+@app.route("/inputFile")
 def inputFile():
     group.inputFile()
+    return render_template('main.html')
 
-@app.route("/deleteObject", methods=['POST'])
+@app.route("/deleteObject",methods=['GET','POST'])
 def deleteObject():
-    group.deleteObject()
-
-@app.route("/editObject", methods=['POST'])
-def editObject():
-    group.editObject()
-
+    if request.method=='GET':
+        return render_template('deleteObject.html')
+    else:
+        group.deleteObject(request.form['index'])
+        return render_template('main.html')
 
 if __name__ == '__main__':
-	app.run(app.run(debug=True))
+	app.run()
