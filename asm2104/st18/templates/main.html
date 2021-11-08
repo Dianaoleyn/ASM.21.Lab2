@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Главная
+{% endblock %}
+
+{% block content %}
+<h1>Choice action</h1>
+    <br>
+    <label>Show</label><br>
+    <input type="button" onclick="window.location.href='/showall'" value="Show all"/>
+    <br>
+    <input type="button" onclick="window.location.href='/showstudent'" value="Show students">
+    <br>
+    <input type="button" onclick="window.location.href='/showemployes'" value="Show employes">
+    <br>
+    <br>
+
+    <label>Add</label><br>
+    <input type="button" onclick="window.location.href='/addstudent'" value="Student"/>
+    <br>
+    <input type="button" onclick="window.location.href='/addemploye'" value="Employe"/>
+    <br>
+    <input type="button" onclick="window.location.href='/addgroupleader'" value="Group Leader"/>
+    <br>
+    <input type="button" onclick="window.location.href='/addproforg'" value="Proforg"/>
+    <br>
+    <input type="button" onclick="window.location.href='/addteacher'" value="Teacher"/>
+    <br>
+    <input type="button" onclick="window.location.href='/adddean'" value="Dean"/>
+    <br>
+    <br>
+
+    <form action="/search" method="get">
+        <label>Search by name or number</label>
+        <br>
+        <input type="text" id="param" name="param"/><br>
+        <input type="submit" value="Search">
+    </form>
+    <br><br>
+
+
+    <input type="button" onclick="window.location.href='/clear'" value="Clear"/>
+    <br>
+
+{% endblock %}
