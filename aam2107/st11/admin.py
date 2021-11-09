@@ -1,6 +1,4 @@
 from pharman import Pharman
-
-
 class Admin(Pharman):
     def __init__(self, name, salary, stake, level):
         super(Admin, self).__init__(name, salary, stake)
