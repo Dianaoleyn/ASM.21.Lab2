@@ -14,12 +14,17 @@ class Short():
             
 class PickleIO():
     def pickleInput(self, card):
-        with open('dataPickle.io','wb') as f:
+        with open('asm2104/st07/dataPickle.io','wb') as f:
             pickle.dump(card,f)
 
     def pickleOutput(self, card):
-        with open('dataPickle.io','rb') as f:
+        with open('asm2104/st07/dataPickle.io','rb') as f:
             return pickle.load(f)
-
+class Web():
+    def print(self, card):
+        str=''
+        for i in card:
+            str += i.strWeb()
+        return str
 
             

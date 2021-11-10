@@ -12,6 +12,9 @@ class Monitor(Student):
     def strShort(self):
         return super().strShort()
     
+    def strWeb(self):
+        return super().strWeb() + self.increasedScholarship+"<br /><br />"
+    
     def input(self):
         self.name = input("Имя: ")
         self.surname = input("Фамилия: ")

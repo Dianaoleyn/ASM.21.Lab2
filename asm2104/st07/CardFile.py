@@ -1,24 +1,28 @@
 from Student import Student
 from Monitor import Monitor
-from StrategyIO import Short, Full, PickleIO
+from StrategyIO import Short, Full, PickleIO, Web
 
 class CardFile:
     def __init__(self):
-        self.strategy=Full()
+        self.strategy=Web()
         self.card = []
-        self.chosen = 'Full'
+        self.chosen = 'Web'
     
     def setStrategy(self):
         if self.chosen=='Short':
             self.strategy=Short()
-        else:
-            if self.chosen=='Full':
-                self.strategy=Full()
+        if self.chosen=='Full':
+            self.strategy=Full()
+        if self.chosen=='Web':
+          self.strategy=Web()
     
     def add(self):
         choice = int(input("0 - Студент, 1  - Староста: \n"))
         student = Monitor() if choice else Student()
         student.input()
+        self.card.append(student)
+    
+    def add(self, student):
         self.card.append(student)
 
     def change(self):
@@ -26,7 +30,8 @@ class CardFile:
         self.card[index-1].input()
 
     def print(self):
-        self.strategy.print(self.card)
+        self.strategy = Web()
+        return self.strategy.print(self.card)
 
     def file_read(self):
         self.strategy=PickleIO()
@@ -40,6 +45,9 @@ class CardFile:
 
     def clear(self):
         self.card.clear()
+        
+    def delete(self, index):
+        self.card.pop(index-1)
     
     def changeOutput(self):
         if self.chosen == 'Short':

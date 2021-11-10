@@ -16,3 +16,5 @@ class Student:
         return "Имя: {}, Фамилия: {}, Возраст: {}".format(
             self.name, self.surname, self.age
         )
+    def strWeb(self):
+        return self.name+"<br />"+self.surname+"<br />"+self.age+"<br />"
