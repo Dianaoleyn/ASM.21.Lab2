@@ -1,0 +1,19 @@
+{% extends 'Base.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+  <form action="/addOriginal" method="post">
+        Имя: <br><input type="text" name="name"><br>
+        Жанр: <br><input type="text" name="genre"><br>
+		Количество серий: <br><input type="number"  name="num"><br>
+        <br><input type=submit value="Ok">
+    </form>
+<p>
+<font size="4" color="Indigo" face="SEGOE PRINT"><br /><a href="../">В главное меню</a><br /><br></font>
+</p>
+{% endblock %}
+
+</html>

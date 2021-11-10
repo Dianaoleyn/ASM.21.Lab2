@@ -1,0 +1,21 @@
+{% extends 'Base.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+<p style="border:3px #00B344  ridge; width: 175px; text-align:center;">
+<font size="4" color="Indigo" face="SEGOE PRINT"><br>
+
+{% autoescape false %}
+{{ data }}
+{% endautoescape %}
+    </font>
+</p>
+<p>
+<font size="4" color="Indigo" face="SEGOE PRINT"><br /><a href="../">В главное меню</a><br /><br></font>
+</p>
+{% endblock %}
+
+</html>
