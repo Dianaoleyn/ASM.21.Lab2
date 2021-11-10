@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel = "stylesheet" href ="static/css/main.css">
+    <title></title>
+ <style>
+
+    form {
+	display: block;
+	padding: 50px;
+	width: 100%;
+	color: Indigo;
+	margin-right: auto;
+	margin-left: auto;
+	font-family: Tahoma;
+}
+
+form input {
+	text-align: left;
+	padding: 20px;
+	margin-bottom: 10px;
+	//margin-left: 40%;
+	width: 23%;
+	height: 15px;
+	border: 1px solid #ff8c00;
+	font-family: Tahoma;
+	}
+
+    .button {
+	display: inline-block;
+	box-sizing: border-box;
+	padding: 0 15px;
+	margin: 0 15px 15px 0;
+	outline: none;
+	border: 1px solid #7952b3;
+	border-radius: 5px;
+	height: 38px;
+	line-height: 38px;
+	font-size: 14px;
+	font-weight: 600;
+	text-decoration: none;
+	color: #fff;
+	background-color: #7952b3;
+	cursor: pointer;
+	user-select: none;
+	appearance: none;
+	touch-action: manipulation;
+	position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+      }
+      .button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+      </style>
+</head>
+<body  background="image.png">
+
+
+{% block body %} {% endblock %}
+
+</body>
+</html>
