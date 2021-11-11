@@ -1,0 +1,71 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Главная
+{% endblock %}
+
+{% block content %}
+    <h1>Выберите тип</h1>
+    <div id="choice_type">
+        <input type="radio" name="choice_type" id="student" class="type_radio" value="student">
+        <label for="student">Студент</label>
+
+        <input type="radio" name="choice_type"  id="employe" class="type_radio"  value="employe">
+        <label for="student">Служащий</label>
+
+        <input type="radio" name="choice_type"  id="proforg" class="type_radio"  value="proforg">
+        <label for="student">Профорг</label>
+
+        <input type="radio" name="choice_type"  id="decan" class="type_radio"  value="decan">
+        <label for="student">Декан</label>
+    </div>
+    <form id="attribs"></form>
+
+    <script>
+        $('.type_radio').click(function() {
+            {#console.log($(this).val())#}
+            var attribs_div=document.getElementById('attribs')
+            attribs_div.innerHTML=''
+            $.ajax({
+                url: '/getattribs',
+                method: 'GET',
+                data: {
+                    'type': $(this).val()
+                },
+                success: (data) => {
+                    var attribs = JSON.parse(data);
+
+                    for (var attr of attribs){
+                        attribs_div.innerHTML+=`<label for="${attr}_input">${attr}</label>`+
+                            `<input type="text" id="${attr}_input" form="${attr}"><br>`
+                    }
+                    attribs_div.innerHTML+='<input type="button" value="Добавить" id="add_btn">'
+
+                    $('#add_btn').click(function(){
+                        var data={
+                            'type':$('input[name="choice_type"]:checked').val(),
+                            'attribs':{}
+                        };
+
+                        var elements=$('input[form]')
+                        for (var el of elements){
+                            data['attribs'][el.getAttribute('form')]=el.value;
+                        }
+                        {#console.log(JSON.stringify(data))#}
+                        {#console.log(data)#}
+                        $.ajax({
+                           url:"/add_item",
+                           type: 'POST',
+                           data: {'data':JSON.stringify(data)},
+                           success: function(msg){
+                               alert(msg);
+                           }
+                        })
+                    })
+                }
+            })
+        })
+
+
+    </script>
+{% endblock %}
