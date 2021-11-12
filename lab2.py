@@ -24,7 +24,7 @@ MENU = [
     ["[2104-17] Svirkov", "asm2104/st17/main.py"],
     ["[2104-18] Terentyeva", "asm2104/st18/main.py"],
     ["[2104-19] Shayakhmetova", "asm2104/st19/main.py"],
-    # ["[2107-04] Zhilina", aam2107.st04.main.main()],
+    ["[2107-04] Zhilina", "aam2107/st04/main.py"],
     #["[2105-15] Semitko", asm2105.st15.main.main()],
     ["[2105-12] Panov", "asm2105/st12/main.py"],
     ["[2104-05] Erygina", "asm2104/st05/main.py"],
