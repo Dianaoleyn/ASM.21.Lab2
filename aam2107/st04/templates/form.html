@@ -12,7 +12,11 @@
         <input type=text name=surname placeholder='Surname' value={{surname}}><br>
         <input type=text name=age placeholder='Age' value={{age}}><br>
         <input type=text name=salary placeholder='Salary' value={{salary}}><br>
-        <input type="checkbox" name="capstud" placeholder='Name' /><br>
+        {% if CountOfEmployees %}
+            <input type="checkbox" name="capstud" placeholder='Name' checked/><br>
+        {% else %}
+             <input type="checkbox" name="capstud" placeholder='Name' /><br>
+        {% endif %}
         <input type=text name=coe placeholder='Employee count' value={{CountOfEmployees}}><br>
         <br><input type=submit value="Ok">
     </form>

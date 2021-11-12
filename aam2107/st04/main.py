@@ -1,47 +1,65 @@
-from flask import Flask, request, redirect, url_for
-from .kartoteka import MenuKartoteka
+if __name__ == '__main__':
+    from kartoteka import MenuKartoteka
+else:
+    from .kartoteka import MenuKartoteka
+from flask import Flask, request, redirect, url_for, g
+
 
 app = Flask(__name__)
 
-archive = MenuKartoteka()
+
+def GetCart():
+    if 'cart' not in g:
+        g.cart = MenuKartoteka()
+        print('мда')
+    return g.cart
 
 
 @app.route("/")
-def start():
-    return archive.print()
+def mainpage():
+    return GetCart().print()
 
 
 @app.route("/showform/<int:id>")
 def showform(id):
-    return archive.form_print(id)
+    return GetCart().form_print(id)
 
 
 @app.route("/add", methods=['POST'])
 def add():
     case = request.form.get('capstud')
-    return archive.add(case)
+    return GetCart().add(case)
 
 
 @app.route("/delete", methods=['GET'])
 def delete():
-    archive.clear()
-    return redirect(url_for('start'))
+    GetCart().clear()
+    return redirect(url_for('mainpage'))
 
 
 @app.route("/in_file", methods=['POST', 'GET'])
 def in_file():
-    archive.file_write()
-    return redirect(url_for('start'))
+    GetCart().file_read()
+    return redirect(url_for('mainpage'))
 
 
 @app.route("/from_file", methods=['POST', 'GET'])
 def from_file():
-    archive.file_read()
-    return redirect(url_for('start'))
+    GetCart().file_write()
+    return redirect(url_for('mainpage'))
+
+
+@app.teardown_appcontext
+def print_in_file(ctx):
+    return GetCart().file_read()
 
 
 def main():
     app.run()
+
+
+if __name__ == "__main__":
+    main()
 
 
 if __name__ == "__main__":

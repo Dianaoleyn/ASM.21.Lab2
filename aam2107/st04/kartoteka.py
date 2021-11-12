@@ -1,14 +1,18 @@
-from .FileIO import FileOutputPickle
-from .Employee import Employee
-from .Chief import Chief
+from FileIO import FileOutputPickle
+from Employee import Employee
+from Chief import Chief
 from flask import request, render_template
 
 
 class MenuKartoteka:
 	def __init__(self, maxid=0, strategy=FileOutputPickle()):
-		self.__cart = []
+		try:
+			self.__cart = strategy.do_input()
+			self.maxid = len(self.__cart)
+		except (EOFError, FileNotFoundError):
+			self.__cart = []
+			self.maxid = maxid
 		self.__strategy = strategy
-		self.maxid = maxid
 
 	def add(self, case):
 		if int(request.form.get('id', 0)) <= 0:
@@ -38,11 +42,12 @@ class MenuKartoteka:
 		return self.__cart[index-1].form_print()
 
 	def file_read(self):
-		self.__cart = self.__strategy.do_input()
-		return
+		return self.__strategy.do_output(self.__cart)
 
 	def file_write(self):
-		return self.__strategy.do_output(self.__cart)
+		self.__cart = self.__strategy.do_input()
+		self.maxid = len(self.__cart)
+		return
 
 	def clear(self):
 		self.maxid = 0

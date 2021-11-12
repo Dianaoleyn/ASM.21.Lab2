@@ -1,4 +1,4 @@
-from .Employee import Employee
+from Employee import Employee
 
 
 class Chief(Employee):

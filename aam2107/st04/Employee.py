@@ -1,5 +1,5 @@
 from flask import render_template
-from .ConsoleIO import ConsoleIO, WebIO
+from ConsoleIO import ConsoleIO, WebIO
 
 
 class Employee:
