@@ -1,9 +1,9 @@
 class Schooler:
-    def __init__(self):
-        self.name = input('Введите имя\n')
-        self.surname = input('Введите фамилию\n')
-        self.rating = input('Введите рейтинг\n')
-        self.characteristic = input('Введите характеристику\n')
+    def __init__(self,name,surname,rating,characteristic):
+        self.name = name
+        self.surname = surname
+        self.rating = rating
+        self.characteristic = characteristic
 
 
     def __str__(self):

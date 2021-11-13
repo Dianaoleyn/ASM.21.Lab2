@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lab2</title>
+</head>
+<body>
+    <form action="/dumpAllObjects" method="post">
+        {% autoescape false %}
+        {{ data }}
+        {% endautoescape %}
+        <input type=submit value="Ok">
+    </form>
+</body>
+</html>
