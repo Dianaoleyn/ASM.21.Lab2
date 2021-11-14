@@ -1,9 +1,8 @@
-from flask import Flask, request, render_template, g
+from flask import Flask, request, render_template, g, redirect
 
-import StorageIO
 from ConsoleIO import ConsoleIO
 from Html import Html
-from StorageIO import Pickle, Shelve
+from StorageIO import Pickle
 
 if __name__ == '__main__':
     from Team import Team
@@ -14,20 +13,14 @@ app = Flask(__name__)
 
 Team = Team()
 
-# storage_strategy_list = [
-#     {'text': 'Pickle', 'class': StorageIO.Pickle},
-#     {'text': 'Shelve', 'class': StorageIO.Shelve},
-# ]
-
 strategy_list = [
     {'text': 'Pickle', 'class': Pickle},
-    {'text': 'Shelve', 'class': Shelve},
     {'text': 'Console', 'class': ConsoleIO},
     {'text': 'HTML', 'class': Html}
 ]
 
 
-def GetTeam():
+def get_team():
     if 'Team' not in g:
         g.Team = Team
     return g.Team
@@ -35,31 +28,29 @@ def GetTeam():
 
 @app.route("/")
 def index():
-    return GetTeam().index()
+    return get_team().index()
 
 
 @app.route("/add_member", methods=['POST', 'GET'])
 def add_member():
-    if request.method == "POST":
-        Team.add_member()
-        return GetTeam().index()
+    if get_team().strategy == ConsoleIO:
+        get_team().add_member()
+        return get_team().index()
     else:
-        return render_template("add_member.html")
+        if request.method == "POST":
+            get_team().add_member()
+            return get_team().index()
+        else:
+            return render_template("add_member.html")
 
 
-# @app.route("/edit_member", methods=['POST', 'GET'])
-# def edit_member():
-    # if Team.strategy == Html:
-    #     if request.method == "POST":
-    #         Team.edit_member()
-    #         return GetTeam().index()
-    #     else:
-    #         return render_template("edit_member.html")
-    # else:
-    #     if request.method == "POST":
-    #         return GetTeam().index()
-    #     else:
-    # Team.edit_member()
+@app.route("/edit_member/<int:id>", methods=['POST', 'GET'])
+def edit_member(id):
+    if request.method == "POST":
+        get_team().edit_member(id)
+        return get_team().index()
+    else:
+        return render_template("edit_member.html")
 
 
 @app.route("/change_strategy", methods=['POST', 'GET'])
@@ -67,43 +58,43 @@ def change_strategy():
     if request.method == 'POST':
         for i in strategy_list:
             if i.get('text') == request.form.get('class'):
-                Team.strategy = i.get('class')
+                get_team().strategy = i.get('class')
                 break
-        return GetTeam().index()
+        return get_team().index()
     else:
-        return Team.change_strategy()
-
-
-# @app.route("/change_storage_strategy", methods=['POST', 'GET'])
-# def change_storage_strategy():
-#     if request.method == 'POST':
-#         for i in strategy_list:
-#             if i.get('text') == request.form.get('class'):
-#                 Team.storage_strategy = i.get('class')
-#                 break
-#         return GetTeam().index()
-#     else:
-#         return Team.change_storage_strategy()
+        return get_team().change_strategy()
 
 
 @app.route("/load", methods=['GET'])
 def load():
-    Team.load()
-    return GetTeam().index()
+    if get_team().strategy == Html:
+        return redirect("/add_member")
+    elif get_team().strategy == ConsoleIO:
+        get_team().add_member()
+        return get_team().index()
+    else:
+        get_team().load()
+        return get_team().index()
 
 
 @app.route("/dump", methods=['GET'])
 def dump():
-    dump = Team.dump()
+    dump = get_team().dump()
     if (dump is None):
-        return GetTeam().index()
-    return Team.dump()
+        return get_team().index()
+    return get_team().dump()
 
 
 @app.route("/delete_members", methods=['GET'])
 def delete_members():
-    Team.delete_members()
-    return GetTeam().index()
+    get_team().delete_all()
+    return get_team().index()
+
+
+@app.route("/delete_member/<int:id>")
+def delete_member(id):
+    get_team().delete_member(id)
+    return get_team().index()
 
 
 if __name__ == '__main__':

@@ -7,19 +7,35 @@ All members
 
 {% block section %}
     <div class="All members" >
-                {% for member in members %}
-                <br>Name: {{ member.name }}<br>
-                Surname: {{ member.surname }}<br>
-                Age: {{ member.age }}<br>
+                <h1>All members</h1>
+                {% for key, member in members.items() %}
+                <br><br>id: {{ member.id }}<br>
+                    Status: {{ member.status }}<br>
+                    Name: {{ member.name }}<br>
+                    Surname: {{ member.surname }}<br>
+                    Age: {{ member.age }}<br>
+
                     {% if member.position %}
                         Position: {{ member.position }}<br>
                     {% endif %}
+
                     {% if member.role %}
                         Role: {{ member.role }}<br>
                     {% endif %}
+
                     {% if member.function %}
-                        Position: {{ member.function }}<br><br>
+                        Position: {{ member.function }}<br>
                     {% endif %}
-                {% endfor %}
+
+        <h7 class="edit_button">
+                <a href='/edit_member/{{member.id}}'>Edit</a>
+                <a href='/delete_member/{{member.id}}'>Delete</a>
+        </h7>
+
+
+
+            {% else %}
+        Team is empty
+    {% endfor %}
     </div>
 {% endblock section %}

@@ -51,7 +51,7 @@ body{
 }
 
 .col-main {
-    width: 60%;
+    width: 55%;
     float: right;
     font-size: 22px;
     padding: 10px 5%;
@@ -62,3 +62,24 @@ body{
 .add_member {
     font-size: 30px;
 }
+
+.edit_button a:link {
+  color: green;
+  text-decoration: none;
+}
+
+
+.edit_button a:visited {
+  color: green;
+}
+
+.edit_button a:hover {
+  color: grey;
+}
+
+.edit_button a:active {
+  color: black;
+}
+
+
+
