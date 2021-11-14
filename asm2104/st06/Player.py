@@ -2,8 +2,8 @@ from Member import Member
 
 
 class Player(Member):
-    def __init__(self, name=None, surname=None, age=None, position=None):
-        super(Player, self).__init__(name, surname, age)
+    def __init__(self, id =1, status='Player', name=None, surname=None, age=None, position=None, ):
+        super().__init__(id, status, name, surname, age)
         if position is None:
             self.position = input('Enter position\n')
         else:
@@ -11,6 +11,5 @@ class Player(Member):
 
     def __str__(self):
         text = super().__str__()
-        text += f'Position: {self.position}\n' \
-                f'Member Type: Player'
+        text += f'Position: {self.position}'
         return text

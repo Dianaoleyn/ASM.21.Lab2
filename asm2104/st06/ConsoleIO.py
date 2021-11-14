@@ -12,20 +12,22 @@ member_type = {
 class ConsoleIO:
 
     @staticmethod
-    def dump(array):
-        for member in array:
+    def dump(dict):
+        for key, member in dict.items():
             print(member)
             print('________________\n')
 
     @staticmethod
-    def load(list):
+    def load():
         print('Choose member you want to add:')
         for i, item in member_type.items():
             print(i, ": ", item[0])
         print("------------------------------")
         s = int(input())
-        list.append(member_type[s][1]())
-        return list
+        m = member_type[s][1]()
+        return m
+
+
 
 
     # def edit_member(list):
