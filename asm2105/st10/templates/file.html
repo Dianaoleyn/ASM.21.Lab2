@@ -1,0 +1,19 @@
+{% extends 'pattern.html' %}
+
+{% block tittle %}
+Работа с файлом
+{% endblock %}
+
+{% block body %}
+<div class="col" style="margin: 20px">
+    <h5>Работа с файлом</h5>
+    <ul class="nav flex-column" style="margin-left: 10px">
+        <li class="nav-item mb-2">
+            <a href="save" class="nav-link p-0 text-muted">Сохранить в файл</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="load" class="nav-link p-0 text-muted">Загрузить из файла</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

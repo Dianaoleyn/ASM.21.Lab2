@@ -1,0 +1,25 @@
+{% extends 'pattern.html' %}
+
+{% block tittle %}
+Меню
+{% endblock %}
+
+{% block body %}
+<div class="col" style="margin: 20px">
+    <h5>АСМ-21-05, Максимович</h5>
+    <ul class="nav flex-column" style="margin-left: 10px">
+        <li class="nav-item mb-2">
+            <a href="form" class="nav-link p-0 text-muted">Добавить футболиста</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="fc" class="nav-link p-0 text-muted">Посмотреть список футболистов клуба</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="file" class="nav-link p-0 text-muted">Работа с файлом</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="clear" class="nav-link p-0 text-muted">Очистить список</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

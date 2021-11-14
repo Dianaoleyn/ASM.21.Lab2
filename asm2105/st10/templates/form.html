@@ -1,0 +1,31 @@
+{% extends 'pattern.html' %}
+
+{% block tittle %}
+Добавить футболиста
+{% endblock %}
+
+{% block body %}
+<form style="margin: 20px; width: 500px" method="post">
+    <div class="mb-3">
+        <label class="form-label">Введите имя</label>
+        <input type="text" class="form-control" id="name" name="name">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Введите номер</label>
+        <input type="text" class="form-control" id="number" name="number">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Введите гражданство</label>
+        <input type="text" class="form-control" id="nationality" name="nationality">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Введите возраст (если футболист - капитан)</label>
+        <input type="number" class="form-control" id="age" name="age">
+    </div>
+
+    <div class="w-100" style="height: 40px; margin-top: 30px">
+        <input class="btn btn-lg btn-primary" value="Добавить"
+               type="submit" style="float: right">
+    </div>
+</form>
+{% endblock %}
