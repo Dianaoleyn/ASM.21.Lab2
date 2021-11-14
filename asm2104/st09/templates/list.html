@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block tittle %}
+Список всех элементов
+{% endblock %}
+
+{% block body %}
+<main class="container">
+    <div class="bg-light p-5 rounded">
+        <h1> Список всех элементов </h1>
+        <p class="lead"> Вот такая у нас большая компания. </p>
+
+        {% for item in array %}
+        <div class="d-flex text-muted pt-3">
+            <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
+                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
+                 preserveAspectRatio="xMidYMid slice" focusable="false">
+
+                {% if not item.annualBonus %}
+                <rect width="100%" height="100%" fill="#007bff"></rect>
+                {% endif %}
+
+                {% if item.annualBonus %}
+                <rect width="100%" height="100%" fill="#e83e8c"></rect>
+                {% endif %}
+            </svg>
+
+            <p class="pb-3 mb-0 small lh-sm border-bottom">
+                <strong class="d-block text-gray-dark">@{{ item.name }}</strong>
+                Язык программирования - {{ item.programLanguage }}. Оклад - {{ item.salary }}.
+                {% if item.annualBonus %}
+                Ежегодная премия - {{ item.annualBonus }}.
+                {% endif %}
+            </p>
+        </div>
+        {% endfor %}
+
+        {% if array|length < 1 %}
+        <p class="lead"> Чет никого нет, давайте добавим разработчиков! </p>
+        <a class="btn btn-lg btn-primary" href="add" role="button"> Добавить »</a>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

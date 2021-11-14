@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block tittle %}
+Добавить элемент в список
+{% endblock %}
+
+{% block body %}
+<main class="container">
+    <div class="bg-light p-5 rounded">
+        <h1>Добавить элемент в список</h1>
+        <p class="lead"> Расширьте нашу команду разработчиков! </p>
+
+        <form action="/add" method="post">
+            <div class="mb-3">
+                <label class="form-label">Введите имя разработчика</label>
+                <input type="text" class="form-control"
+                       name="name" id="name"
+                       placeholder="Вячеслав Литвиненко">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Введите язык программирования</label>
+                <input type="text" class="form-control"
+                       name="programLanguage" id="programLanguage"
+                       placeholder="Python">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Введите оклад</label>
+                <input type="text" class="form-control"
+                       name="salary" id="salary"
+                       placeholder="Очень большое число">
+            </div>
+
+            <div class="mb-3">
+                <div class="form-check">
+                    <script>
+                        function setDisable(value) {
+                            document.getElementById('annualBonus').disabled = !value
+                        }
+                    </script>
+                    <input class="form-check-input" type="checkbox"
+                           name="isTeamlead" id="isTeamlead" checked
+                           onclick="setDisable(this.checked)">
+                    <label class="form-check-label" for="isTeamlead">
+                        Этот разработчик - тимлид
+                    </label>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Введите ежегодную премию</label>
+                <input type="text" class="form-control"
+                       name="annualBonus" id="annualBonus"
+                       placeholder="Тоже большое число">
+            </div>
+
+            <div class="w-100" style="height: 40px; margin-top: 30px">
+                <input class="btn btn-lg btn-primary" value="Сохранить"
+                       type="submit" style="float: right">
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock %}
