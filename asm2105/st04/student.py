@@ -1,16 +1,13 @@
-class Student:
-    def __init__(self, strategy, type='Студент'):
-        self.id = -1
-        self.name = ''
-        self.second_name = ''
-        self.strategy = strategy()
-        self.type = type
+from abc import ABC
+from dataclasses import dataclass
 
-    def set(self):
-        return self.strategy.set(self)
+from asm2105.st04.member import Member
 
-    def get(self):
-        return self.strategy.get(self)
 
-    def __str__(self):
-        return f'Идентификатор: {self.id}\nТип: {self.type}\nИмя: {self.name}\nФамилия: {self.second_name}\n'
+@dataclass()
+class Student(Member, ABC):
+    type: str = 'Студент'
+    stipend: int = 2000
+    
+    def getData(self, id):
+        super(Student, self).getData(id)

@@ -1,10 +1,13 @@
-from asm2105.st04.student import Student
+from abc import ABC
+from dataclasses import dataclass
+
+from asm2105.st04.member import Member
 
 
-class GroupLeader(Student):
-    def __init__(self, strategy, type='Староста'):
-        super(GroupLeader, self).__init__(strategy, type)
-        self.stipend = int()
+@dataclass()
+class GroupLeader(Member, ABC):
+    type: str = 'Староста'
+    stipend: int = 4000
 
-    def __str__(self):
-        return super(GroupLeader, self).__str__() + f'Стипендия: {self.stipend}\n'
+    def getData(self, id):
+        super(GroupLeader, self).getData(id)
