@@ -3,5 +3,57 @@
 {% block title %} Добавление студента {% endblock %}
 
 {% block content %}
-    {% include 'member-form.html' %}
+    <div class="wrapper-form">
+        <form class="form needs-validation" novalidate action="{{ params['route'] }}" method="{{ params['type'] }}">
+            <div class="mb-3">
+                <label for="validationCustom03" class="form-label">Тип студента</label>
+                <select class="form-select select" id="validationCustom03" onchange="changeType(this)" name="type"
+                        required>
+                    <option selected></option>
+                    {% for type in items %}
+                        <option value="{{ type['key'] }}">{{ type['value'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="validationCustom01" class="form-label">Имя</label>
+                <input type="text" class="form-control" id="validationCustom01" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="validationCustom02" class="form-label">Фамилия</label>
+                <input type="text" class="form-control" id="validationCustom02" name="second_name" required>
+            </div>
+            <input type="submit" name="submit" class="btn btn-primary">
+        </form>
+    </div>
+
+    <script>
+        function changeType(event) {
+            const value = event.value;
+            if (value === '') {
+                return
+            }
+
+            const inputs = document.querySelectorAll('.mb-3')
+            const lastInput = inputs[inputs.length - 1];
+
+            if (value === 'student' && lastInput.querySelector('input').name === 'stipend') {
+                lastInput.remove()
+            } else if (value === 'groupLeader' && lastInput.querySelector('input').name !== 'stipend') {
+                renderElement('Стипендия', 'stipend', inputs.length, lastInput)
+            }
+        }
+
+        function renderElement(name, key, i, afterElement) {
+            const html = `
+                <label for="validationCustom0${i}" class="form-label">${name}</label>
+                <input type="text" class="form-control" id="validationCustom02" name="${key}" required>
+            `
+
+            const div = document.createElement('div')
+            div.className = 'mb-3'
+            div.innerHTML = html
+            afterElement.after(div);
+        }
+    </script>
 {% endblock %}
