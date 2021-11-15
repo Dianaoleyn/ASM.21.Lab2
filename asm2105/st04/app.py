@@ -1,14 +1,16 @@
-from operator import methodcaller
-
-from flask import Flask, render_template, redirect, g
-
+from flask import Flask, render_template, redirect, g, request
 from asm2105.st04.group import Group
+from asm2105.st04.groupleader import GroupLeader
+from asm2105.st04.storage import LocalStorage
+from asm2105.st04.strategy import WebStrategy
+from asm2105.st04.student import Student
 
 app = Flask(__name__)
 
 def getGroup():
     if 'group' not in g:
-        g.group = Group()
+        g.group = Group(WebStrategy, LocalStorage)
+        g.group.load()
     return g.group
 
 
@@ -24,13 +26,14 @@ def add():
         {'key': 'student', 'value': 'Студент'},
         {'key': 'groupLeader', 'value': 'Староста'}
     ]
-    params = {'route': '/api/add', 'type': 'POST'}
-    return render_template('add.html', items=types, params=params)
+    return render_template('add.html', items=types)
 
 
 @app.route('/api/add', methods=['POST'])
 def add_student():
-    getGroup().add()
+    type = request.form['type']
+    student = Student(WebStrategy) if type == 'student' else GroupLeader(WebStrategy)
+    getGroup().add(student)
     return redirect('/')
 
 

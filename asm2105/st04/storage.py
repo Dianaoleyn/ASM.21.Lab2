@@ -11,9 +11,9 @@ class Storage:
 
 class LocalStorage(Storage):
     def save(self, data):
-        with open('./dautov.db', 'wb') as file:
+        with open('dautov.db', 'wb') as file:
             pickle.dump(data, file)
 
     def load(self):
-        with open('./dautov.db', 'rb') as file:
+        with open('dautov.db', 'rb') as file:
             return pickle.load(file)

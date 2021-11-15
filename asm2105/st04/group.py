@@ -1,28 +1,17 @@
-from flask import request
-from dataclasses import dataclass
-from asm2105.st04.groupleader import GroupLeader
-from asm2105.st04.storage import LocalStorage
-from asm2105.st04.strategy import WebStrategy
-from asm2105.st04.student import Student
-
-
-@dataclass
 class Group:
-    def __init__(self):
+    def __init__(self, strategy, storage):
         self.group_members = []
-        self.storage = LocalStorage()
+        self.strategy = strategy
+        self.storage = storage()
 
-        try:
-            self.load()
-        except:
-            pass
-
-    def add(self):
-        type = request.form['type']
-        student = Student(WebStrategy) if type == 'student' else GroupLeader(WebStrategy)
+    def add(self, student):
         student.id = len(self.group_members)
         student.set()
         self.group_members.append(student)
+
+    def show(self):
+        for student in self.group_members:
+            student.get()
 
     def load(self):
         self.group_members = self.storage.load()
