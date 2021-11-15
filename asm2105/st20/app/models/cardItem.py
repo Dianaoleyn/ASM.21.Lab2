@@ -1,10 +1,19 @@
 from asm2105.st20.app.strategys.printStrategys import ConsolePrintStrategy
 from asm2105.st20.app.strategys.setterStrategy import ConsoleSetterStrategy
+import enum
+
+class cardItemTypes(enum.Enum):
+    empty='Пустая запись'
+    worker='Служащий'
+    teacher='Преподаватель'
+    student='Студент'
+    headman='Староста'
 
 class cardItem:
     _id = -1
     _name = str()
     _age = int()
+    _type = cardItemTypes.empty.value
     def __init__(self, print=ConsolePrintStrategy, setter=ConsoleSetterStrategy):
         self._printer=print(self)
         self._setter=setter()
@@ -33,14 +42,24 @@ class cardItem:
     def name(self, name) -> None:
         self._name = name
 
+    @property
+    def type(self) -> str:
+        return self._type
+
+    @type.setter
+    def type(self, type) -> None:
+        self._type = type
+
+
     def __str__(self):
         text = f'Номер: {self._id}\n' \
+               f'Тип: {self._type}\n' \
                f'Имя: {self._name}\n' \
                f'Возраст: {self._age}\n'
         return text
 
     def print(self):
-        self._printer.print()
+        return self._printer.print()
 
     def set_data(self, data):
         data=self._setter.to_dict(data)
@@ -49,23 +68,17 @@ class cardItem:
         self._age=data['age']
         return data
 
+    def set(self):
+        self._setter.set(self)
+
+
     @staticmethod
     def get_attribs():
         attribs={
             'name':['Имя', str],
-            'age':['Возраст', int]
+            'age':['Возраст', int],
+            'type':['Тип записи', str]
         }
         return attribs
 
-    # def set_data(self, attribs):
-    #     self._id=attribs['id']
-    #     self._age = attribs['age']
-    #     self._name = attribs['name']
-    #
-    # def get_data(self):
-    #     data={
-    #         'id':self._id,
-    #         'name':self._name,
-    #         'age':self._age
-    #     }
-    #     return data
+

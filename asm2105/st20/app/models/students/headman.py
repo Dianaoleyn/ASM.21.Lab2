@@ -1,4 +1,4 @@
-from asm2105.st20.app.models.students.student import student, ConsolePrintStrategy, ConsoleSetterStrategy
+from asm2105.st20.app.models.students.student import student, ConsolePrintStrategy, ConsoleSetterStrategy,cardItemTypes
 from asm2105.st20.app.strategys.checkPhoneNumStrategys import CheckMobilePhoneNumWithPlusStrategy
 
 
@@ -7,6 +7,7 @@ class headman(student):
     def __init__(self, check_phone_strategy=CheckMobilePhoneNumWithPlusStrategy(), print=ConsolePrintStrategy, setter=ConsoleSetterStrategy):
         student.__init__(self, print, setter)
         self.check_phone_strategy=check_phone_strategy
+        self._type=cardItemTypes.headman.value
 
     @property
     def phone(self) -> str:

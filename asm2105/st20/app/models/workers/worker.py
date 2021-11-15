@@ -1,9 +1,10 @@
-from asm2105.st20.app.models.cardItem import cardItem, ConsoleSetterStrategy, ConsolePrintStrategy
+from asm2105.st20.app.models.cardItem import cardItem, ConsoleSetterStrategy, ConsolePrintStrategy, cardItemTypes
 
 class worker(cardItem):
     _salary = int()
     def __init__(self, print=ConsolePrintStrategy, setter=ConsoleSetterStrategy):
         cardItem.__init__(self, print, setter)
+        self._type=cardItemTypes.worker.value
 
 
     @property

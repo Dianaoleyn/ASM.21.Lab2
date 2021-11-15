@@ -1,15 +1,18 @@
-<form id="CardItemForm" class="by-click" onsubmit="return sendCardItem(this)">
-    <input id="action" type="hidden" value="append">
-    <input id="cardItemId" type="hidden" value="-1">
-    <div class="form-group">
+<form id="CardItemForm" onsubmit="return false;">
+{#    <input type="hidden" id="cardItemForm-action">#}
+    <input type="hidden" id="user-item-form-id">
+    <div class="form-group" id="type-select-block">
         <label for="type_select">Тип CardItem</label>
         <select id="type_select" name="type_select">
-            <option disabled selected value="0">Выберите тип</option>
-            <option class="choice_type_option" value="1">Студент</option>
-            <option class="choice_type_option" value="2">Староста</option>
-            <option class="choice_type_option" value="3">Сотрудник</option>
-            <option class="choice_type_option" value="4">Преподаватель</option>
+            <option disabled selected>Выберите тип</option>
+            {% for tp in context.userTypes %}
+                <option value="{{ tp }}">{{ tp }}</option>
+            {% endfor %}
         </select>
+    </div>
+
+    <div id="user-attributes">
+
     </div>
 
     <div class="form-group form_btn">
@@ -17,3 +20,27 @@
     </div>
 
 </form>
+
+<style>
+    #CardItemForm>input{
+        outline: none;
+        display: block;
+        /*background: rgba(0, 0, 0, 0.1);*/
+        background: white;
+        width: 100%;
+        border: 0;
+        border-radius: 4px;
+        box-sizing: border-box;
+        padding: 12px 20px;
+        color: rgba(0, 0, 0, 0.6);
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: 500;
+        line-height: inherit;
+        transition: 0.3s ease;
+    }
+    .form-group>select{
+        width: 100%;
+        height: 25px;
+    }
+</style>

@@ -7,37 +7,56 @@ from asm2105.st20.app.models.workers.teacher import teacher
 from asm2105.st20.app.strategys.printStrategys import WebPrintStrategy
 from asm2105.st20.app.strategys.setterStrategy import WebSetterStrategy
 
+from asm2105.st20.app.models.cardItem import cardItemTypes
+from flask import request
+
 import json
 
 class universityController(Controller):
-    def index(self):
-        return self._view('views/pages/university.html', {'university_name': get_university().name})
+    def add_user(self, request_data):
+        if request_data['userType']==cardItemTypes.student.value:
+            obj=student(print=WebPrintStrategy, setter=WebSetterStrategy)
+        elif request_data['userType']==cardItemTypes.worker.value:
+            obj=worker(print=WebPrintStrategy, setter=WebSetterStrategy)
+        elif request_data['userType']==cardItemTypes.headman.value:
+            obj=headman(print=WebPrintStrategy,setter=WebSetterStrategy)
+        elif request_data['userType']==cardItemTypes.teacher.value:
+            obj=teacher(print=WebPrintStrategy, setter=WebSetterStrategy)
 
-    def cardItemClassByTypeId(self, type):
-        if int(type) == 1:
-            return student
-        elif int(type) == 2:
-            return headman
-        elif int(type) == 3:
-            return worker
-        elif int(type) == 4:
-            return teacher
-        else:
-            raise Exception(f'type {type} dont exist')
+        try:
+            obj.set()
 
-    def get_obj_attribs(self, type):
-        attr=self.cardItemClassByTypeId(type).get_attribs()
+            univer=get_university()
+            # univer.load()
+            univer.append_user(obj)
+            univer.save()
+            return '1'
+        except Exception as err:
+            print(err)
+            return '0'
 
-        attribs = {}
-        for key, value in attr.items():
-            attribs[key] = [value[0], str(value[1].__name__)]
+    def change_user(self, request_data):
+        try:
+            # print(request_data)
+            univer=get_university()
+            user_buffer=univer.get_user_or_none_by_id(int(request_data['id']))
+            user_buffer.set()
+            # for attr, value in request_data['attributes'].items():
+            #     user_buffer.__setattr__(attr,value)
 
-        return json.dumps(attribs)
+            univer.get_users()[user_buffer.id]=user_buffer
+            univer.save()
+            return '1'
+        except Exception as err:
+            print(err)
+            return '0'
 
-    def action(self, form):
-        if form['action']=='append':
-            obj=self.cardItemClassByTypeId(form['type'])(print=WebPrintStrategy, setter=WebSetterStrategy)
-            obj.set_data(form)
-            get_university().append_user(obj)
-            get_university().save()
-            return 'true'
+    def delete_user(self, id):
+        try:
+            univer=get_university()
+            univer.get_users().pop(int(id))
+            univer.save()
+            return '1'
+        except Exception as err:
+            print(err)
+            return '0'

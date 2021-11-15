@@ -1,9 +1,12 @@
-from asm2105.st20.app.models.workers.worker import worker, ConsoleSetterStrategy, ConsolePrintStrategy
+from asm2105.st20.app.models.workers.worker import worker, ConsoleSetterStrategy, ConsolePrintStrategy, cardItemTypes
+
 
 class teacher(worker):
     _subject = str()
     def __init__(self, print=ConsolePrintStrategy, setter=ConsoleSetterStrategy):
         worker.__init__(self, print, setter)
+        self._type=cardItemTypes.teacher.value
+
 
     @property
     def subject(self) -> str:

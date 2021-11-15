@@ -59,13 +59,13 @@
             }
         });
 
-        modal=new ModalWindow('', document.getElementById('CardItemForm'), AnimationsTypes.slideIn, true, true)
-        modal.set_on_Close(show_one_content);
+
 
         //Добавить новый cardItem
         $('#addCardItemsBtn').click(function (){
-            modal.change_header_text('Добавить новую запись');
-            modal.change_content(document.getElementById('CardItemForm'));
+            modal=new ModalWindow('Добавить новую запись', document.getElementById('CardItemForm'), AnimationsTypes.slideIn, true, true)
+            modal.set_on_Close(show_one_content);
+
             show_one_content('CardItemForm');
             document.getElementById('addNewCardItemFormBtn').disabled=true;
             modal.show();
@@ -109,6 +109,38 @@
              })
          })
 
+
+        //Посмотреть всех
+        $('#showCardItemsBtn').click(function(){
+            $.ajax({
+                url:'/action',
+                type:'GET',
+                data:{
+                    'action':'getAll'
+                },
+                success:function (responce){
+                    var arr=JSON.parse(responce)
+                    if (arr.length!=0){
+                        var allCardItems=document.getElementById('allCardItems');
+                        {#console.log(allCardItems.outerHTML)#}
+                        allCardItems.innerHTML='';
+                        for (var item of arr){
+                            allCardItems.innerHTML+='<div class="itemBlock">';
+                            for (var key of Object.keys(item)){
+                                allCardItems.innerHTML +=`<span class="itemBlock-${key}">${item[key][1]}: ${item[key][0]}</span><br>`
+                            }
+                            allCardItems.innerHTML+='</div><br><br>'
+                        }
+                        modal=new ModalWindow('Все записи', allCardItems, AnimationsTypes.slideIn, true, true)
+                        modal.set_on_Close(show_one_content);
+
+                        show_one_content('allCardItems');
+                        modal.show();
+                    }
+                }
+            })
+        })
+
     })
 
     //Отправить cardItem
@@ -126,6 +158,7 @@
             method: 'POST',
             data: data,
             success: function (responce){
+                console.log(responce)
                 if (responce=='true'){
                     modal.close()
                 }

@@ -1,0 +1,46 @@
+<div id="func-buttons-block">
+    <div class="function">
+            <input type="button" id="user-add-input" class="template-button floating-button" value="Добавить">
+    </div>
+
+    <div class="function">
+        <label>Поиск</label>
+        <input type="search" id="user-search-input">
+    </div>
+
+    <div class="function">
+        <label>Показать</label>
+        <select id="user-type-select">
+            <option value="ALL" selected>Все записи</option>
+            {% for tp in context.userTypes %}
+                <option value="{{ tp }}">{{ tp }}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+
+<style>
+    #func-buttons-block{
+        height: 50px;
+    }
+    #func-buttons-block>label{
+        margin: 0 0 10px;
+        color: rgba(0, 0, 0, 0.6);
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+    }
+    .function>input,
+    .function>select{
+        margin: 10px 10px;
+        height: 25px;
+        line-height: 25px;
+    }
+    .function{
+        margin: 0 10px;
+        display: inline-block;
+        height: 100%;
+    }
+</style>
