@@ -46,7 +46,6 @@ class Group:
         return self.strategy.input(self.list)
 
     def outputWeb(self):
-        self.strategy=WebIO
         if(len(self.list)==0):
             return 'Список пуст'
         else:

@@ -16,7 +16,4 @@ class Head(Student):
     def __str__(self):
         return super(Head, self).__str__() + ' Стипендия:'+self.grant + ' Номер в списке:'+self.number
 
-    def WebOutput(self):
-        return self.name
-
         
