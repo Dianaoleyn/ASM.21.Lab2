@@ -14,6 +14,6 @@ class Head(Student):
 
 
     def __str__(self):
-        return super(Head, self).__str__() + ' Стипендия:'+self.grant + ' Номер в списке:'+self.number
+        return super().__str__() + ' Стипендия:'+self.grant + ' Номер в списке:'+self.number
 
         
