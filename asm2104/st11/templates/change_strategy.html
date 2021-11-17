@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+
+{% block title %}
+Change strategy
+{% endblock %}
+
+
+{% block section %}
+
+        Select strategy
+        <form action="/change_strategy" method="post">
+            <select name="class">
+                {% for class in classes %}
+                <option value="{{ class.title }}">{{ class.title }}</option>
+                {% endfor %}
+            </select>
+        <input type=submit value="Ok">
+        </form>
+
+{% endblock section %}

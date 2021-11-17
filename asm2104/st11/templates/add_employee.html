@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+
+{% block title %}
+Add employee
+{% endblock %}
+
+
+{% block section %}
+    <form action="/add_employee" method="post">
+        Position: <input type="text" name="position"><br>
+        Full name: <input type="text" name="full_name"><br>
+        Salary: <input type="text" name="salary"><br>
+        Department if lead: <input type="text" name="department"><br>
+        Qualification if developer: <input type="text"  name="qualification"><br><br>
+        <input type=submit value="Ok">
+    </form>
+{% endblock section %}
