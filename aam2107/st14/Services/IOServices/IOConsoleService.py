@@ -1,4 +1,4 @@
-from aam2107.st14.Services.Abstracts.IOBaseService import IOBaseService
+from Services.Abstracts.IOBaseService import IOBaseService
 
 
 class IOConsoleService(IOBaseService):

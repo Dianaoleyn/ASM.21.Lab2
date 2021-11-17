@@ -1,5 +1,5 @@
 from flask import Flask, g
-from aam2107.st14.Services.WebService import WebService
+from Services.WebService import WebService
 
 app = Flask(__name__)
 

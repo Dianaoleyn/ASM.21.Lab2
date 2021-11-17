@@ -2,9 +2,9 @@ import pickle
 
 from flask import request
 
-from aam2107.st14.Models.MainStudent import MainStudent
-from aam2107.st14.Models.Student import Student
-from aam2107.st14.Services.Abstracts.BaseContainer import BaseContainer
+from Models.MainStudent import MainStudent
+from Models.Student import Student
+from Services.Abstracts.BaseContainer import BaseContainer
 
 FILE_NAME = "container.db"
 

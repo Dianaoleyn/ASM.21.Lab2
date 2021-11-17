@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from aam2107.st14.Models.Student import Student
+from Models.Student import Student
 
 
 @dataclass
