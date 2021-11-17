@@ -1,7 +1,5 @@
-from flask import Flask, g, request
-
-from Services.IOServices.IOFormService import IOFormService
-from Services.WebService import WebService
+from flask import Flask, g
+from aam2107.st14.Services.WebService import WebService
 
 app = Flask(__name__)
 

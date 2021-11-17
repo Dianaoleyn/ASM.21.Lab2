@@ -1,9 +1,9 @@
 from flask import request, render_template
 
-from Models.MainStudent import MainStudent
-from Models.Student import Student
-from Services.Container import ContainerPickle
-from Services.IOServices.IOFormService import IOFormService
+from aam2107.st14.Models.MainStudent import MainStudent
+from aam2107.st14.Models.Student import Student
+from aam2107.st14.Services.Container import ContainerPickle
+from aam2107.st14.Services.IOServices.IOFormService import IOFormService
 
 
 class WebService:
