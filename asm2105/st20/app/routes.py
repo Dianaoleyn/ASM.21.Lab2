@@ -1,7 +1,7 @@
 import json
 
-from asm2105.st20.app import app, request
-from asm2105.st20.app import controller
+from . import app, request
+from . import controller
 
 # @app.route('/')
 # def main_page():

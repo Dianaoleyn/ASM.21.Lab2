@@ -1,14 +1,14 @@
-from asm2105.st20.app.controller.Controller import Controller
-from asm2105.st20.app.models.cardItem import cardItemTypes
+from .Controller import Controller
+from ..models.cardItem import cardItemTypes
 
-from asm2105.st20.app.strategys.printStrategys import WebPrintStrategy
-from asm2105.st20.app.strategys.setterStrategy import WebSetterStrategy
+from ..strategys.printStrategys import WebPrintStrategy
+from ..strategys.setterStrategy import WebSetterStrategy
 
 
-from asm2105.st20.app.models.workers.worker import worker
-from asm2105.st20.app.models.students.student import student
-from asm2105.st20.app.models.workers.teacher import teacher
-from asm2105.st20.app.models.students.headman import headman
+from ..models.workers.worker import worker
+from ..models.students.student import student
+from ..models.workers.teacher import teacher
+from ..models.students.headman import headman
 
 import json
 

@@ -1,4 +1,4 @@
-from asm2105.st20.app.models.workers.worker import worker, ConsoleSetterStrategy, ConsolePrintStrategy, cardItemTypes
+from .worker import worker, ConsoleSetterStrategy, ConsolePrintStrategy, cardItemTypes
 
 
 class teacher(worker):

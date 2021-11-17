@@ -1,13 +1,13 @@
-from asm2105.st20.app.controller.Controller import Controller
-from asm2105.st20.app import get_university
-from asm2105.st20.app.models.students.student import student
-from asm2105.st20.app.models.students.headman import headman
-from asm2105.st20.app.models.workers.worker import worker
-from asm2105.st20.app.models.workers.teacher import teacher
-from asm2105.st20.app.strategys.printStrategys import WebPrintStrategy
-from asm2105.st20.app.strategys.setterStrategy import WebSetterStrategy
+from .Controller import Controller
+from app import get_university
+from ..models.students.student import student
+from ..models.students.headman import headman
+from ..models.workers.worker import worker
+from ..models.workers.teacher import teacher
+from ..strategys.printStrategys import WebPrintStrategy
+from ..strategys.setterStrategy import WebSetterStrategy
 
-from asm2105.st20.app.models.cardItem import cardItemTypes
+from ..models.cardItem import cardItemTypes
 from flask import request
 
 import json

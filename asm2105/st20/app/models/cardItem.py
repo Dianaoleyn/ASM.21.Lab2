@@ -1,5 +1,5 @@
-from asm2105.st20.app.strategys.printStrategys import ConsolePrintStrategy
-from asm2105.st20.app.strategys.setterStrategy import ConsoleSetterStrategy
+from ..strategys.printStrategys import ConsolePrintStrategy
+from ..strategys.setterStrategy import ConsoleSetterStrategy
 import enum
 
 class cardItemTypes(enum.Enum):

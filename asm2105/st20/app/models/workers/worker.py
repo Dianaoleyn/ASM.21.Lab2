@@ -1,4 +1,4 @@
-from asm2105.st20.app.models.cardItem import cardItem, ConsoleSetterStrategy, ConsolePrintStrategy, cardItemTypes
+from ..cardItem import cardItem, ConsoleSetterStrategy, ConsolePrintStrategy, cardItemTypes
 
 class worker(cardItem):
     _salary = int()

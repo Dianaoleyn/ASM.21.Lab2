@@ -1,6 +1,6 @@
-from asm2105.st20.app.controller.Controller import Controller
-from asm2105.st20.app import get_university
-from asm2105.st20.app.models.cardItem import cardItemTypes
+from .Controller import Controller
+from app import get_university
+from ..models.cardItem import cardItemTypes
 
 class mainController(Controller):
     def start(self):

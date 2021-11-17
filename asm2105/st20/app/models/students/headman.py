@@ -1,5 +1,5 @@
-from asm2105.st20.app.models.students.student import student, ConsolePrintStrategy, ConsoleSetterStrategy,cardItemTypes
-from asm2105.st20.app.strategys.checkPhoneNumStrategys import CheckMobilePhoneNumWithPlusStrategy
+from .student import student, ConsolePrintStrategy, ConsoleSetterStrategy,cardItemTypes
+from app.strategys.checkPhoneNumStrategys import CheckMobilePhoneNumWithPlusStrategy
 
 
 class headman(student):
