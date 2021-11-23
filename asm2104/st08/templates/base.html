@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+    <header id="toppage">
+        <h1 class="site-header1"><a href="/">MAIN CONTAINER</a></h1>
+    </header>
+    <main>
+        <h1 class="aside-name">Menu</h1>
+        <nav>
+            <ol>
+                <li><a href="/add_member">Add member</a></li>
+                <li>
+                    <a href="/clear">Clear</a>
+                </li>
+                <li>
+                    <form action="/search" method="get">
+                        <input type="text" id="search-param" name="search-param">
+                        <input type="submit" value="Search">
+                    </form>
+                </li>
+            </ol>
+        </nav>
+        <hr>
+        <div id="content">
+            {% block content %} {% endblock %}
+        </div>
+    </main>
+</body>
+</html>

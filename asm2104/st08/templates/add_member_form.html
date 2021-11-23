@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="/add-new" method="post">
+        <nav>
+            <ol>
+                <li>
+                    <label>Input Name</label>
+                    <br>
+                    <input type="text" id="add-name" name="add-name">
+                </li>
+                <li>
+                    <label>Input Age</label>
+                    <br>
+                    <input type="number" id="add-age" name="add-age">
+                </li>
+                <li>
+                    <label>If student or leader input group</label>
+                    <br>
+                    <input type="text" id="add-group" name="add-group">
+                </li>
+                <li>
+                    <label>If student or leader input course</label>
+                    <br>
+                    <input type="text" id="add-course" name="add-course">
+                </li>
+                <li>
+                    <label>If leader input email</label>
+                    <br>
+                    <input type="email" id="add-email" name="add-email">
+                </li>
+
+                <li>
+                    <label>If employe or director or teacher input salary</label>
+                    <br>
+                    <input type="number" id="add-salary" name="add-salary">
+                </li>
+                <li>
+                    <label>If employe or director or teacher input experience</label>
+                    <br>
+                    <input type="number" id="add-experience" name="add-experience">
+                </li>
+                <li>
+                    <label>If director input phone</label>
+                    <br>
+                    <input type="text" id="add-phone" name="add-phone">
+                </li>
+                <li>
+                    <label>If director input cabinet</label>
+                    <br>
+                    <input type="number" id="add-cabinet" name="add-cabinet">
+                </li>
+                <li>
+                    <label>If teacher input subject</label>
+                    <br>
+                    <input type="text" id="add-subject" name="add-subject">
+                </li>
+            </ol>
+            <input type="submit" value="Add new member">
+        </nav>
+    </form>
+
+{% endblock %}
