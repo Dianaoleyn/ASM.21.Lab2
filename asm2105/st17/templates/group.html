@@ -1,0 +1,30 @@
+{% extends 'pattern.html' %}
+
+{% block tittle %}
+Список группы
+{% endblock %}
+
+{% block body %}
+{% for item in array %}
+<div class="card" style="margin: 10px; width: 500px">
+    <div class="card-body d-flex justify-content-between align-items-center">
+        <div>
+            <h5 class="card-title">{{item.name}} {{item.surname}}</h5>
+            {% if item.grant %}
+            <h6 class="card-subtitle mb-2 text-muted">Староста</h6>
+            {% endif %}
+            <p class="card-text">
+                Средний балл: {{item.average_score}}
+                {% if item.grant %}
+                <br> Стипендия: {{item.grant}}.
+                {% endif %}
+            </p>
+        </div>
+        <div class="d-flex flex-column align-items-end">
+            <a href="delete/{{ item.id }}"> Удалить </a>
+            <a href="form/{{ item.id }}"> Изменить </a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

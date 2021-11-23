@@ -1,0 +1,24 @@
+{% extends 'pattern.html' %}
+
+{% block tittle %}
+Меню
+{% endblock %}
+
+{% block body %}
+<div class="col" style="margin: 20px">
+    <ul class="nav flex-column" style="margin-left: 10px">
+        <li class="nav-item mb-2">
+            <a href="/form" class="nav-link p-0 text-muted">Добавить студента</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="/group" class="nav-link p-0 text-muted">Список группы</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="/save" class="nav-link p-0 text-muted">Сохранить изменения</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a href="/clear" class="nav-link p-0 text-muted">Очистить список</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
