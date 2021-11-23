@@ -21,11 +21,10 @@ def addHead():
     if request.method=='GET':
         return render_template('addHead.html')
     else:
-        newElement=Head(request.form['name'],request.form['surname'],request.form['age'],request.form['mark'],request.form['grant'],request.form['number'])
         if(request.form.__contains__('check')):
-            group.addElement(newElement,FileIO())
+            group.addElement(Head,FileIO(),request.form)
         else:
-            group.addElement(newElement,WebIO())
+            group.addElement(Head,WebIO(),request.form)
         return render_template('addHead.html')
 
 @app.route("/addStudent",methods=['GET','POST'])
@@ -33,12 +32,17 @@ def addStudent():
     if request.method=='GET':
         return render_template('addStudent.html')
     else:
-        newElement=Student(request.form['name'],request.form['surname'],request.form['age'],request.form['mark'])
         if(request.form.__contains__('check')):
-            group.addElement(newElement,FileIO())
+            group.addElement(Student,FileIO(),request.form)
         else:
-            group.addElement(newElement,WebIO())
+            group.addElement(Student,WebIO(),request.form)
         return render_template('addStudent.html')
+
+@app.route("/deleteObj/<int:id>")
+def deleteObj(id):
+    group.deleteObject(id)
+    WebData=group.outputWeb()
+    return render_template('outputList.html',data=WebData)
 
 @app.route("/clearList")
 def clearList():
@@ -64,13 +68,13 @@ def inputFile():
     group.inputFile()
     return render_template('main.html')
 
-@app.route("/deleteObject",methods=['GET','POST'])
-def deleteObject():
-    if request.method=='GET':
-        return render_template('deleteObject.html')
-    else:
-        group.deleteObject(request.form['index'])
-        return render_template('main.html')
+# @app.route("/deleteObject",methods=['GET','POST'])
+# def deleteObject():
+#     if request.method=='GET':
+#         return render_template('deleteObject.html')
+#     else:
+#         group.deleteObject(request.form['index'])
+#         return render_template('main.html')
 
 if __name__ == '__main__':
 	app.run()

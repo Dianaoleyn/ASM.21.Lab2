@@ -7,6 +7,6 @@ class WebIO:
 
     def output(self,newList):
         str=''
-        for obj in newList:
-            str+=obj.__str__()+'<br />'
+        for i in range(0, newList.__len__()):
+            str+=newList[i].__str__() +'<a href="/deleteObj/'+i.__str__()+'">Удалить элемент</a><br>'
         return str
