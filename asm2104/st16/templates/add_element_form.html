@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="/add-new" method="post">
+        <nav>
+            <ol>
+                <li>
+                    <label>NAME</label>
+                    <br>
+                    <input type="text" id="name" name="name">
+                </li>
+                <li>
+                    <label>AGE</label>
+                    <br>
+                    <input type="number" id="age" name="age">
+                </li>
+                <li>
+                    <label>GROUP (if student)</label>
+                    <br>
+                    <input type="text" id="group" name="group">
+                </li>
+                <li>
+                    <label>COURSE (if student)</label>
+                    <br>
+                    <input type="text" id="course" name="course">
+                </li>
+                <li>
+                    <label>E-MAIL (if starosta)</label>
+                    <br>
+                    <input type="text" id="email" name="email">
+                </li>
+
+                <li>
+                    <label>ZARPLATA (if sluzh)</label>
+                    <br>
+                    <input type="number" id="zarplata" name="zarplata">
+                </li>
+                <li>
+                    <label>STAZH</label>
+                    <br>
+                    <input type="number" id="stazh" name="stazh">
+                </li>
+                <li>
+                    <label>PHONE (if director)</label>
+                    <br>
+                    <input type="text" id="phone" name="phone">
+                </li>
+                <li>
+                    <label>CABINET (if director)</label>
+                    <br>
+                    <input type="number" id="cabinet" name="cabinet">
+                </li>
+                <li>
+                    <label>PREDMET (if teacher)</label>
+                    <br>
+                    <input type="text" id="predmet" name="predmet">
+                </li>
+            </ol>
+            <input type="submit" value="Add new zapis">
+        </nav>
+    </form>
+
+{% endblock %}

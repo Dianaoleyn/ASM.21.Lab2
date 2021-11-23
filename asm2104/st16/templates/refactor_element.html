@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="/refactor/{{ context.element.id }}" method="post">
+        <nav>
+            <ol>
+                {% for key, value in context.element.__dict__.items() %}
+                    {% if key!='id' %}
+                    <li>
+                        <label>Input {{ key }}</label>
+                        <br>
+                        <input type="text" id="{{ key }}" value="{{ value }}" name="{{ key }}">
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+            <input type="submit" value="Refactor member">
+        </nav>
+    </form>
+
+{% endblock %}
