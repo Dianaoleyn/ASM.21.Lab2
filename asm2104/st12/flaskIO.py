@@ -7,6 +7,6 @@ class FlaskIO:
     @staticmethod
     def dump(mass):
         s=''
-        for o in mass:
-            s=s+o.__str__()+'<br />'
+        for i in range(0,mass.__len__()):
+            s=s+mass[i].strWeb(i)
         return s

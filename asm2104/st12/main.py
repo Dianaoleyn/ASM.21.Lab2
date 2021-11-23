@@ -18,7 +18,7 @@ def addNewSchooler():
 	if request.method=='GET':
 		return render_template('addNewSchooler.html')
 	else:
-		group.list.append(Schooler(request.form['name'],request.form['surname'],request.form['rating'],request.form['characteristic']))
+		group.add(Schooler(),request.form)
 		return render_template('mainMenu.html')
 
 @app.route("/addNewTeacher", methods=['GET','POST'])
@@ -26,7 +26,7 @@ def addNewTeacher():
 	if request.method=='GET':
 		return render_template('addNewTeacher.html')
 	else:
-		group.list.append(Teacher(request.form['name'],request.form['surname'],request.form['rating'],request.form['characteristic'],request.form['education'],request.form['subject']))
+		group.add(Teacher(),request.form)
 		return render_template('mainMenu.html')
 
 @app.route("/dumpAllObjects", methods=['GET','POST'])
@@ -37,13 +37,11 @@ def dumpAllObjects():
 	else:
 		return render_template('mainMenu.html')
 
-@app.route("/deleteOneElement",methods=['GET','POST'])
-def deleteOneElement():
-	if request.method=='GET':
-		return render_template('deleteOneElement.html')
-	else:
-		group.deleteOneElement(request.form['num'])
-		return render_template('mainMenu.html')
+@app.route("/delete/index/<int:number>")
+def delete(number):
+	group.deleteOneElement(number)
+	group.strategy=FlaskIO
+	return render_template('dumpAllObjects.html', data=group.dumpData())
 
 @app.route("/dumpData")
 def dumpData():
