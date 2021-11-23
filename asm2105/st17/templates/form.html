@@ -1,0 +1,31 @@
+{% extends 'pattern.html' %}
+
+{% block tittle %}
+Добавить студента
+{% endblock %}
+
+{% block body %}
+<form style="margin: 20px; width: 500px" method="post">
+    <div class="mb-3">
+        <label class="form-label">Введите имя</label>
+        <input type="text" class="form-control" id="name" name="name" value="{{student.name}}">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Введите фамилию</label>
+        <input type="text" class="form-control" id="surname" name="surname" value="{{student.surname}}">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Введите средний балл</label>
+        <input type="text" class="form-control" id="average_score" name="average_score" value="{{student.average_score}}">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Введите стипендию (если староста)</label>
+        <input type="number" class="form-control" id="grant" name="grant" value="{{student.grant}}">
+    </div>
+
+    <div class="w-100" style="height: 40px; margin-top: 30px">
+        <input class="btn btn-lg btn-primary" value="Добавить"
+               type="submit" style="float: right">
+    </div>
+</form>
+{% endblock %}
