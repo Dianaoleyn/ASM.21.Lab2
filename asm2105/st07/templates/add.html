@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %} Добавление студента {% endblock %}
+
+{% block content %}
+    <div class="wrapper-form">
+        <form class="form needs-validation" novalidate action="/api/add" method="POST">
+            <div class="mb-3">
+                <label for="validationCustom03" class="form-label">Тип студента</label>
+                <select class="form-select select" id="validationCustom03" onchange="changeType(this)" name="type"
+                        required>
+                    <option selected></option>
+                    {% for type in items %}
+                        <option value="{{ type['key'] }}">{{ type['value'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="validationCustom01" class="form-label">Имя</label>
+                <input type="text" class="form-control" id="validationCustom01" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="validationCustom02" class="form-label">Фамилия</label>
+                <input type="text" class="form-control" id="validationCustom02" name="second_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="validationCustom02" class="form-label">Стипендия</label>
+                <input type="text" class="form-control money" id="validationCustom" name="stipend" disabled required>
+            </div>
+            <input type="submit" name="submit" class="btn btn-primary">
+        </form>
+    </div>
+     <script>
+        function changeType(event) {
+            const value = event.value;
+            if (value === '') {
+                return
+            }
+
+            const inputs = document.querySelectorAll('.mb-3')
+            const powerInput = document.querySelector('.money')
+            var type = document.querySelector('select')
+
+            if (type.selectedIndex == '2') {
+                powerInput.removeAttribute('disabled');
+            } else {
+                powerInput.setAttribute('disabled','disabled');
+            }
+
+        }
+     </script>
+
+{% endblock %}
