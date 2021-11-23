@@ -1,0 +1,24 @@
+{% extends 'pattern.html' %}
+
+{% block tittle %}
+ФК
+{% endblock %}
+
+{% block body %}
+{% for item in array %}
+<div class="card" style="margin: 10px; width: 500px">
+    <div class="card-body">
+        <h5 class="card-title">{{item.name}}</h5>
+        {% if item.age %}
+        <h6 class="card-subtitle mb-2 text-muted">Капитан</h6>
+        {% endif %}
+        <p class="card-text">
+            Номер футболиста: {{item.number}}, гражданство: {{item.nationality}}.
+            {% if item.age %}
+            <br> Возраст: {{item.age}}.
+            {% endif %}
+        </p>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

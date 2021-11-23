@@ -1,0 +1,297 @@
+{% extends 'layout/app_layout.html' %}
+
+{% block title %}
+Университет
+{% endblock %}
+
+{% block content %}
+    {% include 'views/include/function_buttons_block.html' %}
+
+    <!--Форма для cardItem-->
+    {% include 'views/include/modalWindow_contents/cardItemForm.html' %}
+
+
+    {% for key, user in context.users.items() %}
+        <div class="user-item" data-id="{{ key }}">
+            <div class="user-item-wrap">
+                <div class="user-link">
+                    {% for key, attr in user.items() %}
+                        {% if key=='name' %}
+                            <h3 class="user-title">{{ user.name.value }}</h3>
+                        {% else %}
+                            <p class="user-attrib" data-attr="{{ key }}" data-value="{{ user[key].value }}">{{ user[key].attrName }}: {{ user[key].value }}</p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="user-item-buttons">
+                    <button class="template-button floating-button change-user-btn">Редактировать</button>
+                    <button class="delete-button floating-button">Удалить</button>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+
+    <style>
+    .user-wrap {
+       max-width: 1120px;
+       margin: 0 auto;
+       display: flex;
+       justify-content: center;
+       flex-wrap: wrap;
+    }
+    .user-item {
+       padding: 10px;
+    }
+    .user-item-wrap {
+       background: #F7F7F2;
+       position: relative;
+    }
+    .user-item-wrap:after {
+       content: "";
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       z-index: -1;
+       background: #0079c2;
+       transform: rotate(1deg);
+       transform-origin: left bottom;
+       transition: .3s ease-in-out;
+    }
+    .user-item-wrap:hover:after {
+       top: 5px;
+       left: 5px;
+       transform: rotate(2deg);
+    }
+    .user-link {
+       text-decoration: none;
+       display: block;
+       padding: 30px 30px 10px 30px;
+    }
+    .user-title {
+       color: #33261D;
+       margin-bottom: 15px;
+       transition: .3s ease-in-out;
+    }
+    .user-item-wrap:hover .post-title {
+       color: #C9F2C7;
+    }
+    .user-attrib {
+       color: #A69888;
+       font-size: 14px;
+    }
+
+    .floating-button {
+        text-decoration: none;
+        display: inline-block;
+        /* width: 140px; */
+        {#height: 45px;#}
+        line-height: 25px;
+        /* border-radius: 45px; */
+        margin: 10px 10px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11px;
+        text-transform: uppercase;
+        text-align: center;
+        /* letter-spacing: 3px; */
+        font-weight: 600;
+        color: #524f4e;
+        background: white;
+        box-shadow: 0 8px 15px rgba(0 0 0 0.1);
+        transition: .3s;
+        padding: 0 20px;
+    }
+    .template-button:hover {
+      background: #0079c2;
+      box-shadow: 0 15px 20px rgba(46, 92, 229, 0.4);
+      color: white;
+      transform: translateY(-7px);
+    }
+
+    .delete-button:hover{
+        background: #cb2929;
+        box-shadow: 0 15px 20px rgba(229, 46, 67, 0.4);
+        color: white;
+        transform: translateY(-7px);
+    }
+
+    </style>
+
+    <script>
+        $(document).ready(function(){
+            var userModal=new ModalWindow('', document.getElementById('CardItemForm'),AnimationsTypes.slideIn, true, true)
+            $('#user-add-input').click(function(){
+                $('#CardItemForm').removeAttr('onsubmit')
+                    .submit(add_user);
+
+                userModal.change_header_text('Добавить новую запись');
+                $('#addNewCardItemFormBtn').text('Добавить');
+                $('#type-select-block').show();
+
+                userModal.show();
+            });
+
+            function show_attribs(userType){
+                var data={'userType':userType}
+                $.ajax({
+                    url:'/getattr',
+                    type:'GET',
+                    data:data,
+                    success:(res)=>{
+                        res=JSON.parse(res)
+                        res=Object.keys(res).map((key) => res[key]);
+                        $('#user-attributes').html('')
+                        for (var attr of res){
+                            if (attr['attrType']==='int'){
+                                var input_type='number'
+                            }
+                            else{
+                                input_type='text'
+                            }
+
+                            var attribute_block=document.createElement('div');
+                            attribute_block.className='form-group';
+
+                            attribute_block.innerHTML=`<label>${attr['attrName']}</label>`+
+                                `<input data-attr="${attr['attr']}" type="${input_type}">`
+                            $('#user-attributes').append(attribute_block);
+                        }
+                        $('#addNewCardItemFormBtn').attr('disabled', false);
+                    }
+                });
+            }
+
+            $('#type_select').on('change', function (event){
+                show_attribs(event.currentTarget.value);
+            });
+
+            $('.change-user-btn').click(function(){
+                $('#CardItemForm').removeAttr('onsubmit')
+                    .submit(change_user);
+
+                $('#user-item-form-id').val($(this).closest('.user-item').attr('data-id'));
+
+                userModal.change_header_text('Редактировать запись');
+                $('#addNewCardItemFormBtn').text('Изменить');
+
+                {#console.log($(this).closest('.user-item').find('.user-attrib[data-attr=type]').attr('data-value'))#}
+                show_attribs($(this).closest('.user-item').find('.user-attrib[data-attr=type]').attr('data-value'));
+                $('#type-select-block').hide();
+
+                userModal.show();
+            })
+
+            $('.delete-button').click(function (){
+                delete_user($(this).closest('.user-item').attr('data-id'));
+            })
+
+            function add_user(event){
+                var data={'userType':$('#type_select').val(),
+                        'attributes':{}}
+                for (var attr of $('input[data-attr]')){
+                    data['attributes'][$(attr).attr('data-attr')]=attr.value;
+                }
+                {#console.log(data);#}
+                $.ajax({
+                    url:'/add-user',
+                    type:'POST',
+                    data:JSON.stringify(data),
+                    contentType: 'application/json;charset=UTF-8',
+                    success:(res)=>{
+                        if (Boolean(res)===true){
+                            userModal.close();
+                        }
+                        else{
+                            //НУЖНО ДОБАВИТЬ СЮДА ОБРАОТЧИК
+                        }
+                    }
+                })
+                {#return false;#}
+            }
+
+            function change_user(event){
+                var data={
+                    'id':$(event.currentTarget).find('#user-item-form-id').val(),
+                    'attributes':{}
+                }
+                for (var attr of $('input[data-attr]')){
+                    data['attributes'][$(attr).attr('data-attr')]=attr.value;
+                }
+
+
+                $.ajax({
+                    url:'/change-user',
+                    type:'POST',
+                    data:JSON.stringify(data),
+                    contentType: 'application/json;charset=UTF-8',
+                    success:(res)=>{
+                        {#console.log(res)#}
+                        if (Boolean(res)===true){
+                            userModal.close();
+                        }
+                        else{
+                            //НУЖНО ДОБАВИТЬ СЮДА ОБРАОТЧИК
+                            return false;
+                        }
+                    }
+                });
+            }
+
+            function delete_user(id){
+                var data={
+                    'id': id
+                }
+                $.ajax({
+                    url:'/delete-user',
+                    type:'POST',
+                    data:JSON.stringify(data),
+                    contentType: 'application/json;charset=UTF-8',
+                    success:(res)=>{
+                        if (Boolean(res)===true){
+                            document.location.reload()
+                        }
+                        else{
+                            //НУЖНО ДОБАВИТЬ СЮДА ОБРАОТЧИК
+                            return false;
+                        }
+                    }
+                })
+
+            }
+        });
+
+        $('#user-search-input').on('input',function(event){
+            var dInput = this.value;
+            $('.user-item').hide();
+            if (dInput===''){
+                $('.user-item').show();
+            }
+            else{
+                $(`.user-item[data-id=${dInput}]`).show();
+                for (var user_item of $(`.user-item`).find('.user-title')){
+                    if ($(user_item).text().toLowerCase().includes(dInput.toLowerCase())){
+                        $(user_item).closest('.user-item').show();
+                    }
+                }
+            }
+        });
+
+        $('#user-type-select').on('change',function(event){
+            $('.user-item').hide();
+            if (this.value==='ALL'){
+                $('.user-item').show();
+            }
+            else{
+                console.log($('.user-item').find(`[data-value=${this.value}]`))
+                $('.user-item').find(`[data-value=${this.value}]`).closest('.user-item').show();
+            }
+        })
+
+
+
+    </script>
+
+
+{% endblock %}

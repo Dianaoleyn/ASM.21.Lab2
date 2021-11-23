@@ -1,4 +1,4 @@
-from asm2105.st20.app.models.cardItem import cardItem, ConsolePrintStrategy, ConsoleSetterStrategy
+from app.models.cardItem import cardItem, ConsolePrintStrategy, ConsoleSetterStrategy, cardItemTypes
 
 class student(cardItem):
     _group = str()
@@ -6,6 +6,7 @@ class student(cardItem):
 
     def __init__(self, print=ConsolePrintStrategy, setter=ConsoleSetterStrategy):
         cardItem.__init__(self, print, setter)
+        self._type=cardItemTypes.student.value
 
     @property
     def group(self) -> str:

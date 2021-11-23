@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}  {% endblock %}</title>
+</head>
+<body>
+    <a href="/add_employee">Add employee</a><br>
+    <a href="/clear_employee_list">Clear</a><br>
+<!--    <a href="/employee_list">Show all employees</a><br>-->
+    <a href="/input_data">Input data</a><br>
+    <a href="/output_data">Output data </a><br>
+    <a href="/change_strategy">Change strategy</a><br><br>
+
+    {% block section %}
+
+    {% endblock section %}
+
+</body>
+</html>

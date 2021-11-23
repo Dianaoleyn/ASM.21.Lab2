@@ -13,9 +13,9 @@ class Group:
     # def addElement(self):
     #     self.inputList(ConsoleIO())
         
-    def addElement(self,newElement,newStrategy):
+    def addElement(self,newElementStrategy,newStrategy,form):
         self.strategy=newStrategy
-        self.strategy.addOneElement(newElement,self.list)
+        self.strategy.addOneElement(newElementStrategy(form),self.list)
 
     def clearList(self):
         self.list.clear()
@@ -46,7 +46,6 @@ class Group:
         return self.strategy.input(self.list)
 
     def outputWeb(self):
-        self.strategy=WebIO
         if(len(self.list)==0):
             return 'Список пуст'
         else:

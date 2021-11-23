@@ -1,94 +1,51 @@
-from flask import Flask, render_template, request, redirect, g
-
+from flask import Flask, render_template, redirect, g, request
 from asm2105.st04.group import Group
-from asm2105.st04.member import Member
+from asm2105.st04.groupleader import GroupLeader
+from asm2105.st04.storage import LocalStorage
+from asm2105.st04.strategy import WebStrategy
+from asm2105.st04.student import Student
 
 app = Flask(__name__)
 
-
 def getGroup():
     if 'group' not in g:
-        g.group = Group()
-        g.group.loadGroup()
+        g.group = Group(WebStrategy, LocalStorage)
+        g.group.load()
     return g.group
-
-
-student_types = [
-    {'name': 'Студент', 'value': 'student'},
-    {'name': 'Староста', 'value': 'groupLeader'}
-]
 
 
 @app.route('/')
 def index():
-    params = {'route': '/api/group/name', 'type': 'POST'}
-    return render_template('index.html', params=params)
+    lst = list(map(lambda x: x.get(), getGroup().group_members))
+    return render_template('index.html', items=lst)
 
 
-@app.route('/group')
-def allStudents():
-    return render_template('group.html', group=getGroup())
-
-
-@app.route('/group/edit/<int:id>')
-def edit(id):
-    member = getGroup().getMemberById(id)
-    return render_template(
-        '/edit.html',
-        params={'route': '/api/student/edit/' + str(member.id), 'type': 'POST'},
-        member=member,
-        items=student_types
-    )
-
-
-@app.route('/group/add')
+@app.route('/add')
 def add():
-    return render_template(
-        'add.html',
-        params={'route': '/api/student/add', 'type': 'POST'},
-        member=Member(),
-        items=student_types
-    )
+    types = [
+        {'key': 'student', 'value': 'Студент'},
+        {'key': 'groupLeader', 'value': 'Староста'}
+    ]
+    return render_template('add.html', items=types)
 
 
-@app.route('/api/group/name', methods=['POST'])
-def setGroupName():
-    name = request.form['name']
-    group = getGroup()
-    group.clearStudents()
-    group.name = name
-
-    return redirect('/group')
+@app.route('/api/add', methods=['POST'])
+def add_student():
+    type = request.form['type']
+    student = Student(WebStrategy) if type == 'student' else GroupLeader(WebStrategy)
+    getGroup().add(student)
+    return redirect('/')
 
 
-@app.route('/api/group/load')
-def loadGroup():
-    return redirect('/group')
-
-
-@app.route('/api/student/edit/<int:id>', methods=['POST'])
-def editStudent(id):
-    getGroup().editStudent(id)
-    return redirect('/group')
-
-
-@app.route('/api/student/add', methods=['POST'])
-def addStudent():
-    getGroup().addStudent()
-    return redirect('/group')
-
-
-@app.route('/api/student/delete/<int:id>')
-def deleteStudent(id):
-    getGroup().deleteStudent(id)
-    return redirect('/group')
+@app.route('/api/clear')
+def delete_students():
+    getGroup().clear()
+    return redirect('/')
 
 
 @app.teardown_appcontext
-def writeFile(ctx):
-    group = getGroup()
-    if group.name != '':
-        getGroup().saveGroup()
+def save(ctx):
+    getGroup().save()
 
 
 if __name__ == '__main__':
