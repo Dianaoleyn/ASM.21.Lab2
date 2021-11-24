@@ -11,4 +11,5 @@ class Schooler:
 
     def strWeb(self,index):
         href='/delete/index/'+index.__str__()
-        return "Имя: {}, Фамилия: {}, Рейтинг: {}, Характеристика: {}".format(self.name, self.surname, self.rating,self.characteristic)+'<a href="'+href+'">Удалить</a><br>'
+        hrefUpdate='/updateSchooler/'+index.__str__()
+        return "Имя: {}, Фамилия: {}, Рейтинг: {}, Характеристика: {}".format(self.name, self.surname, self.rating,self.characteristic)+'<a href="'+href+'">Удалить</a><br>'+'<a href="'+hrefUpdate+'">Изменить</a><br>'

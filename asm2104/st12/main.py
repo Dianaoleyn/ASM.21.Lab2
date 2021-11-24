@@ -13,6 +13,22 @@ group = Group()
 def start():
     return render_template('mainMenu.html')
 
+@app.route("/updateSchooler/<int:number>", methods=['GET','POST'])
+def updateNewSchooler(number):
+	if request.method=='GET':
+		return render_template('updateSchooler.html',url=number)
+	else:
+		group.ChangeEl(number,request.form)
+		return render_template('mainMenu.html')
+
+@app.route("/updateTeacher/<int:number>", methods=['GET','POST'])
+def updateTeacher(number):
+	if request.method=='GET':
+		return render_template('updateTeacher.html',url=number)
+	else:
+		group.ChangeEl(number,request.form)
+		return render_template('mainMenu.html')
+
 @app.route("/addNewSchooler", methods=['GET','POST'])
 def addNewSchooler():
 	if request.method=='GET':

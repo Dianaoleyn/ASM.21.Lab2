@@ -21,6 +21,17 @@ class Group:
             el.subject=dict['subject']      
         self.list.append(el)
 
+    def ChangeEl(self,index,dict):
+        el=self.list[index]
+        el.name=dict['name']
+        el.surname=dict['surname']
+        el.rating=dict['rating']
+        el.characteristic=dict['characteristic']
+        if(dict.__contains__('education')):
+            el.education=dict['education']
+        if(dict.__contains__('subject')):
+            el.subject=dict['subject']   
+
     def clearList(self):
         self.list.clear()
 

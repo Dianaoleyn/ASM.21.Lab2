@@ -11,7 +11,8 @@ class Teacher(Schooler):
 
     def strWeb(self,index):
         href='/delete/index/'+index.__str__()
-        return super().__str__() + ' Образование:'+self.education+ ' Предмет:'+self.subject+'<a href="'+href+'">Удалить</a><br>'
+        hrefUpdate='/updateTeacher/'+index.__str__()
+        return super().__str__() + ' Образование:'+self.education+ ' Предмет:'+self.subject+'<a href="'+href+'">Удалить</a><br>'+'<a href="'+hrefUpdate+'">Изменить</a><br>'
 
     def __str__(self):
         return super().__str__() + ' Образование:'+self.education+ ' Предмет:'+self.subject
