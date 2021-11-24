@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Динозавры {% endblock %}
+
+{% block content %}
+    <div class="header header__group">
+        <button type="button" class="btn btn-outline-primary add" onclick="location.href = '/add'">Добавить динозавра</button>
+        <button type="button" class="btn btn-outline-danger add" onclick="location.href = '/show'">Показать всех</button>
+        <button type="button" class="btn btn-outline-danger delete" onclick="location.href = '/delete'">kill one</button>
+        <button type="button" class="btn btn-outline-danger delete" onclick="location.href = '/api/clear'">Вызвать метеорит</button>
+
+
+    </div>
+    <div class="wrapper-list">
+        <ul class="list-group">
+            {% for item in items %}
+                <li class="list-group-item">
+                    <span>{{ item }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="dino">
+
+    </div>
+{% endblock %}

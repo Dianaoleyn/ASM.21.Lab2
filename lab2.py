@@ -36,7 +36,8 @@ MENU = [
     ["[2107-15] Ushcheko", "aam2107/st15/main.py"],
     ["[2104-09] Litvinenko", "asm2104/st09/main.py"],
     ["[2105-07] Zhurba", "asm2105/st07/app.py"],
-    ["[2105-17] Simonov", "asm2105/st17/main.py"]
+    ["[2105-17] Simonov", "asm2105/st17/main.py"],
+    ["[2105-05] Dmitrieva", "asm2105/st05/app.py"],
 ]
 
 

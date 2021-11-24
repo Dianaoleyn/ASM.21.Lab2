@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} Убить динозавра :с {% endblock %}
+
+{% block content %}
+    <div class="wrapper-form">
+        <form class="form needs-validation" novalidate action="/api/delete" method="POST">
+            <div class="mb-3">
+                <label for="validationCustom01" class="form-label">id</label>
+                <input type="number" class="form-control" id="validationCustom01" name="index" required>
+            </div>
+            <input type="submit" name="submit" class="btn btn-primary">
+        </form>
+    </div>
+
+{% endblock %}
