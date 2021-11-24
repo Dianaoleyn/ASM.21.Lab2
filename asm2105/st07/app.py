@@ -1,9 +1,9 @@
 from flask import Flask, render_template, redirect, g, request
-from asm2105.st07.group import Group
-from asm2105.st07.groupleader import GroupLeader
-from asm2105.st07.storage import LocalStorage
-from asm2105.st07.strategy import WebStrategy
-from asm2105.st07.student import Student
+from group import Group
+from groupleader import GroupLeader
+from storage import LocalStorage
+from strategy import WebStrategy
+from student import Student
 
 app = Flask(__name__)
 

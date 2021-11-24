@@ -15,5 +15,8 @@ class LocalStorage(Storage):
             pickle.dump(data, file)
 
     def load(self):
-        with open('asm2105/st07/zhurba.db', 'rb') as file:
-            return pickle.load(file)
+        try:
+            with open('asm2105/st07/zhurba.db', 'rb') as file:
+                return pickle.load(file)
+        except FileNotFoundError:
+            return []

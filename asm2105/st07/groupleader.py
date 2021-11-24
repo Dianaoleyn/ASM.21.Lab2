@@ -1,4 +1,4 @@
-from asm2105.st07.student import Student
+from student import Student
 
 
 class GroupLeader(Student):
