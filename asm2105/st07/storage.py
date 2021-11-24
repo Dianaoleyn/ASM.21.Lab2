@@ -11,9 +11,9 @@ class Storage:
 
 class LocalStorage(Storage):
     def save(self, data):
-        with open('zhurba.db', 'wb') as file:
+        with open('asm2105/st07/zhurba.db', 'wb') as file:
             pickle.dump(data, file)
 
     def load(self):
-        with open('zhurba.db', 'rb') as file:
+        with open('asm2105/st07/zhurba.db', 'rb') as file:
             return pickle.load(file)
