@@ -24,11 +24,11 @@ MENU = [
     ["[2104-17] Svirkov", "asm2104/st17/main.py"],
     ["[2104-18] Terentyeva", "asm2104/st18/main.py"],
     ["[2104-19] Shayakhmetova", "asm2104/st19/main.py"],
-    ["[2107-04] Zhilina", "aam2107/st04/main.py"],
+    ["[2107-04] Zhilina", "aam2107/st11/main.py"],
     #["[2105-15] Semitko", asm2105.st15.main.main()],
     ["[2105-12] Panov", "asm2105/st12/main.py"],
     ["[2104-05] Erygina", "asm2104/st05/main.py"],
-    ["[2104-04] Devin", "asm2104/st04/main.py"],
+    ["[2104-04] Devin", "asm2104/st11/main.py"],
     ["[2104-07] Kitaev", "asm2104/st07/main.py"],
     ["[2104-13] Migranov", "asm2104/st13/main.py"],
     ["[2105-09] Кровникова", "asm2105/st09/main.py"],
@@ -39,6 +39,7 @@ MENU = [
     ["[2105-17] Simonov", "asm2105/st17/main.py"],
     ["[2105-05] Dmitrieva", "asm2105/st05/app.py"],
     ["[2104-03] Gilev", "asm2104/st03/main.py"],
+    ["[2105-11] Олейникова", "asm2105/st11/main.py"],
 ]
 
 
