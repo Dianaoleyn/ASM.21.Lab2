@@ -56,3 +56,4 @@ class CardFile:
         else:
             self.chosen = 'Short'
             self.setStrategy()
+        

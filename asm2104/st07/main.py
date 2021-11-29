@@ -1,6 +1,7 @@
 from CardFile import CardFile
 from Student import Student
 from Monitor import Monitor
+from StrategyIO import Web
 from flask import Flask, request, render_template, url_for, redirect
 
 app = Flask(__name__)
@@ -19,7 +20,8 @@ def addStudent():
     if request.method=='GET':
         return render_template('addStudent.html')
     else:
-        student = Student(request.form['name'],request.form['surname'],request.form['age'])
+        student = Student()
+        Web.inputProperties(request.form,student)
         card.add(student)
         return render_template('addStudent.html')
 
@@ -28,10 +30,26 @@ def addMonitor():
     if request.method=='GET':
         return render_template('addMonitor.html')
     else:
-        monitor = Monitor (request.form['name'],request.form['surname'],request.form['age'],request.form['increasedScholarship'])
+        monitor = Monitor ()
+        Web.inputProperties(request.form,monitor)
         card.add(monitor)
         return render_template('addMonitor.html')
 
+@app.route("/updateStudent/<int:number>", methods=['GET','POST'])
+def updateNewSchooler(number):
+	if request.method=='GET':
+		return render_template('updateStudent.html',url=number)
+	else:
+		Web.inputProperties(request.form,card.card[number-1])
+		return render_template('print.html', data=card.print())
+
+@app.route("/updateMonitor/<int:number>", methods=['GET','POST'])
+def updateTeacher(number):
+	if request.method=='GET':
+		return render_template('updateMonitor.html',url=number)
+	else:
+		Web.inputProperties(request.form,card.card[number-1])
+		return render_template('print.html', data=card.print())
 @app.route('/clear')
 def clear():
     card.clear()
@@ -51,13 +69,17 @@ def file_read():
     card.file_read()
     return render_template('main.html')
 
-@app.route('/delete', methods=['GET', 'POST'])
-def delete():
-    if request.method=='GET':
-        return render_template('delete.html')
-    else:
-        card.delete(int(request.form['index']))
-        return render_template('delete.html')
+@app.route("/delete/index/<int:number>")
+def delete(number):
+	card.delete(number)
+	return render_template('print.html', data=card.print())
+# @app.route('/delete', methods=['GET', 'POST'])
+# def delete():
+#     if request.method=='GET':
+#         return render_template('delete.html')
+#     else:
+#         card.delete(int(request.form['index']))
+#         return render_template('delete.html')
 
 if __name__ == '__main__':
     app.run(app.run(debug=True))

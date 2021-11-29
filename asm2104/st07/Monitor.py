@@ -12,8 +12,10 @@ class Monitor(Student):
     def strShort(self):
         return super().strShort()
     
-    def strWeb(self):
-        return super().strWeb() + self.increasedScholarship+"<br /><br />"
+    def strWeb(self,index):
+        urlDelete='/delete/index/'+index.__str__()
+        urlUpdate='/updateMonitor/'+index.__str__()
+        return self.name+"<br />"+self.surname+"<br />"+self.age +"<br />"+ self.increasedScholarship+"<br />"+'<a href="'+urlDelete+'">Удалить</a><br>'+'<a href="'+urlUpdate+'">Изменить</a><br>'"<br />"
     
     def input(self):
         self.name = input("Имя: ")

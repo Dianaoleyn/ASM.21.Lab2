@@ -16,5 +16,7 @@ class Student:
         return "Имя: {}, Фамилия: {}, Возраст: {}".format(
             self.name, self.surname, self.age
         )
-    def strWeb(self):
-        return self.name+"<br />"+self.surname+"<br />"+self.age+"<br />"
+    def strWeb(self,index):
+        urlDelete='/delete/index/'+index.__str__()
+        urlUpdate='/updateStudent/'+index.__str__()
+        return self.name+"<br />"+self.surname+"<br />"+self.age+"<br />"+'<a href="'+urlDelete+'">Удалить</a><br>'+'<a href="'+urlUpdate+'">Изменить</a><br>'"<br />"

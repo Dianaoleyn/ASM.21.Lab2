@@ -5,12 +5,11 @@
     <title>Add Student</title>
 </head>
 <body>
-    <form action="/addStudent" method="POST">
+    <form action="/updateStudent/{{ url }}" method="POST">
         Name: <input type="text" name="name"><br>
         Surname: <input type="text" name="surname"><br>
         Age: <input type="number" min="16" name="age"><br>
         <input type=submit value="Ok">
     </form>
-<br /><a href="/returnMain">Back to main menu</a><br />
 </body>
 </html>

@@ -23,8 +23,15 @@ class PickleIO():
 class Web():
     def print(self, card):
         str=''
-        for i in card:
-            str += i.strWeb()
+        for i in range(0,card.__len__()):
+            str=str+card[i].strWeb(i+1)
         return str
+    
+    def inputProperties(dict,el):
+        el.name=dict['name']
+        el.surname=dict['surname']
+        el.age=dict['age']
+        if(dict.__contains__('increasedScholarship')):
+            el.increasedScholarship=dict['increasedScholarship']  
 
             
