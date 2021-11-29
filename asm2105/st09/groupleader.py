@@ -1,7 +1,7 @@
 from abc import ABC
 from dataclasses import dataclass
 
-from asm2105.st04.member import Member
+from asm2105.st09.member import Member
 
 
 @dataclass()

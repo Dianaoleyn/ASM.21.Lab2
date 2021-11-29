@@ -9,9 +9,9 @@ from dataclasses import dataclass, field
 from typing import List
 import pickle
 
-from asm2105.st04.groupleader import GroupLeader
-from asm2105.st04.member import Member
-from asm2105.st04.student import Student
+from asm2105.st09.groupleader import GroupLeader
+from asm2105.st09.member import Member
+from asm2105.st09.student import Student
 
 pathToFile = './asm2105/st09/group.dat'
 

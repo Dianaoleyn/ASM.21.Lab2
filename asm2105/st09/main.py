@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, g
 
-from asm2105.st04.group import Group
-from asm2105.st04.member import Member
+from asm2105.st09.group import Group
+from asm2105.st09.member import Member
 
 app = Flask(__name__)
 

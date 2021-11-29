@@ -1,6 +1,6 @@
 from abc import ABCMeta
 
-from asm2105.st04.inputstrategy import InputStrategy
+from asm2105.st09.inputstrategy import InputStrategy
 
 
 class Member(metaclass=ABCMeta):
