@@ -28,7 +28,7 @@ class Group:
 		self._strategyFile = strategy
 
 	def addStudent(self, person, request):
-		self._strategyIO.enter(person,request)
+		self._strategyIO.enter(person, request)
 		self.cartoteka.append(person)
 
 	def print_cartoteka(self):   #распечатает всех из картотеки
@@ -42,14 +42,6 @@ class Group:
 
 	def clear_kartoteka(self):
 		del self.cartoteka[:]
-
-	def cartoteka_edit_person(self):
-		index = int(input(f"Id персонажа(целое положительное): "))
-		try:
-			person = self.cartoteka[index]
-		except IndexError:
-			print(f"Такого персонажа нет в картотеке")
-			'''self.fill_in_console(person)'''
 
 
 

@@ -13,9 +13,11 @@
 <ul class="list-group">
     {% for person in data %}
         {% if person.is_VUC %}
-            <li class="list-group-item list-group-item-primary disabled">Имя {{ person.first_name }}, Фамилия {{ person.surname }}, Возраст {{person.age}}, Средний балл {{person.rating}} , Студент ВУЦ</li>
+            <li class="list-group-item list-group-item-primary disabled">Имя {{ person.name }}, Фамилия {{ person.surname }}, Возраст {{person.age}}, Средний балл {{person.rating}} , Студент ВУЦ</li>
         {% else %}
-            <li class="list-group-item list-group-item-info disabled">Имя {{ person.first_name }}, Фамилия {{ person.surname }}, Возраст {{person.age}}, Средний балл {{person.rating}}</li>
+            <li class="list-group-item list-group-item-info disabled">Имя {{ person.name }}, Фамилия {{ person.surname }}, Возраст {{person.age}}, Средний балл {{person.rating}}</li>
+        {% endif %}
+    {% endfor %}
 </ul>
 </body>
 </html>

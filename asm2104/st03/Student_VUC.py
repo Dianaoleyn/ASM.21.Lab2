@@ -1,4 +1,4 @@
-from asm2104.st03.student import Student
+from student import Student
 
 class Student_VUC(Student):
     def __init__(self , name = '', surname = '' , age = None , rating = None):

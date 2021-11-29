@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from student import Student
+from Student_VUC import Student_VUC
 from typing import List
 
 class StrategyIO(ABC):
@@ -24,10 +25,10 @@ class ConsoleIO(StrategyIO):
 
 class WebIO(StrategyIO):
     def enter(self, person: Student, request=None):
-        person.name = request.name
-        person.surname = request.surname
-        person.age = request.age
-        person.rating = request.rating
+        person.name = request.form["first_name"]
+        person.surname = request.form["surname"]
+        person.age = request.form["age"]
+        person.rating = request.form["rating"]
 
     def printout(self, data: List):
         return 

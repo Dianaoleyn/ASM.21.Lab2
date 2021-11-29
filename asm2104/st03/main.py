@@ -9,9 +9,9 @@ app = Flask(__name__)
 group = Group(strategyFile=FileIO(), strategyIO=WebIO())
 
 if __name__ == '__main__':
-    from group import group
+    from group import Group
 else:
-    from .group import group
+    from .group import Group
 
 
 @app.route("/", methods=['GET'])
@@ -24,7 +24,12 @@ def add_student():
     if request.method == 'GET':
         return render_template('addStudent.html')
     else:
-        group.add(request=request, person=Student())
+        value = request.form.getlist('is_vuc')
+        if not value:
+            print("это не вуц")
+            group.addStudent(request=request, person=Student())
+        else:
+            group.addStudent(request=request, person=Student_VUC())
         return render_template('main.html', text='Участник добавлен!')
 
 
@@ -34,10 +39,9 @@ def clear_members():
     return render_template('main.html', text='Картотека почищена')
 
 
-@app.route("/show", methods=['GET'])
+@app.route("/show-student", methods=['GET'])
 def show():
-    print(group.cartoteka)
-    return render_template('printKartoteka.html', data=group.members)
+    return render_template('printKartoteka.html', data=group.cartoteka)
 
 
 @app.route("/save-to-file", methods=['GET'])
