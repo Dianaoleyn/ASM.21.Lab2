@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab2_Romanova</title>
+</head>
+<body>
+    <form action = '/group/add_member' method=POST>
+        Name:<input type=text name=name value={{_Member__name}}><br>
+        Age:<input type=number name=age value={{_Member__name}}><br>
+        <div>
+            <input type="radio" id="Assistant"
+             name="member_type" value="assistant">
+            <label for="memberChoice1">Assistant</label>
+        
+            <input type="radio" id="Teacher"
+             name="member_type" value="teacher">
+            <label for="memberChoice2">Teacher</label>
+          </div>
+        <br><input type=submit value="Ok">
+    </form>
+</body>
+</html>
