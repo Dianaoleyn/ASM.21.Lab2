@@ -26,7 +26,7 @@ class WebIO:
         self.__dict__['_Student__name'] = form.get('name')
         self.__dict__['_Student__surname'] = form.get('surname')
         self.__dict__['_Student__age'] = form.get('age')
-        self.__dict__['_Captain__grants'] = form.get('grants')
+        self.__dict__['_Headman__premium'] = form.get('premium')
 
 
 

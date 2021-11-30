@@ -1,6 +1,6 @@
-from .FileIO import FileOutputPickle
-from .Stusent import Student as St
-from .Captain import Captain as Cap
+from FileIO import FileOutputPickle
+from Student import Student as St
+from Headman import Headman as Head
 from flask import request, render_template
 
 
@@ -13,7 +13,7 @@ class MenuCartoteka:
 	def add(self, case):
 		if int(request.form.get('id', 0)) <= 0:
 			self.maxid += 1
-			student = Cap() if case is not None else St()
+			student = Head() if case is not None else St()
 			student.input(request.form, self.maxid)
 			self.__cart.append(student)
 			return self.print()
