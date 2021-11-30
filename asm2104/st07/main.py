@@ -36,7 +36,7 @@ def addMonitor():
         return render_template('addMonitor.html')
 
 @app.route("/updateStudent/<int:number>", methods=['GET','POST'])
-def updateNewSchooler(number):
+def updateStudent(number):
 	if request.method=='GET':
 		return render_template('updateStudent.html',url=number)
 	else:
@@ -44,12 +44,13 @@ def updateNewSchooler(number):
 		return render_template('print.html', data=card.print())
 
 @app.route("/updateMonitor/<int:number>", methods=['GET','POST'])
-def updateTeacher(number):
+def updateMonitor(number):
 	if request.method=='GET':
 		return render_template('updateMonitor.html',url=number)
 	else:
 		Web.inputProperties(request.form,card.card[number-1])
 		return render_template('print.html', data=card.print())
+
 @app.route('/clear')
 def clear():
     card.clear()
@@ -73,13 +74,6 @@ def file_read():
 def delete(number):
 	card.delete(number)
 	return render_template('print.html', data=card.print())
-# @app.route('/delete', methods=['GET', 'POST'])
-# def delete():
-#     if request.method=='GET':
-#         return render_template('delete.html')
-#     else:
-#         card.delete(int(request.form['index']))
-#         return render_template('delete.html')
 
 if __name__ == '__main__':
     app.run(app.run(debug=True))
